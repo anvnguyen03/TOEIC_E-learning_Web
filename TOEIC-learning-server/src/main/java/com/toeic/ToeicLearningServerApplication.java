@@ -1,4 +1,4 @@
-package toeic.com;
+package com.toeic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
