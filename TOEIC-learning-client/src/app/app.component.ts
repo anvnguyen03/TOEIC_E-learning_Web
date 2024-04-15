@@ -1,31 +1,19 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component} from '@angular/core';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavbarHomeComponent } from './navbar-home/navbar-home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, 
+            NavbarHomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'TOEIC-learning-client';
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
 
-  @ViewChild('dropdownMenu', { static: false })
-  dropdownMenu!: ElementRef;
-
-  ngAfterViewInit() {
-    // Kiểm tra xem các ViewChild đã được khởi tạo chưa
-    console.log(this.dropdownMenu);
-  }
-
-  toggleDropdown() {
-    if (this.dropdownMenu.nativeElement.classList.contains('show')) {
-      this.dropdownMenu.nativeElement.classList.remove('show');
-    } else {
-      this.dropdownMenu.nativeElement.classList.add('show');
-    }
-  }
 }
