@@ -2,15 +2,15 @@
     <div class="content-header pb-0 gray-bg">
         <div class="container pb-0">
             <div class="row">
-                <div class="col-12 col-md-3 order-md-2">
+                <div *ngIf="isLoggedIn" class="col-12 col-md-3 order-md-2">
                     <div class="user-target-info-box">
                         <div class="user-target-user">
                             <div>
                                 <span class="account-profile-img md">
-                                    <img src="/assets/static/img/user_icon.png" alt="anguyenviet">
+                                    <img src="/assets/static/img/user_icon.png" alt="{{getUsername()}}">
                                 </span>
                             </div>
-                            <div class="text-center">anguyenviet</div>
+                            <div class="text-center">{{getUsername()}}</div>
                         </div>
                         <div class="divider sm"></div>
                         <div class="user-target-info">

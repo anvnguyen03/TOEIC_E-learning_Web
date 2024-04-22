@@ -3,7 +3,7 @@
     <div class="topnav-container">
       <nav class="navbar navbar-expand-lg">
         <span class="navbar-brand">
-          <a class="topnav-brand" href="/">
+          <a class="topnav-brand" href="/home">
             <img class="topnav-logo" src="/assets/static/img/logo_full_sm.png" alt="STUDY4">
           </a>
         </span>
@@ -12,23 +12,17 @@
         </button>
         <div class="d-lg-block navbar-collapse justify-content-end collapse" id="navbar-collapse" style>
           <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/my-account/courses/">Khoá học của tôi</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/my-account/courses/">Khoá học online</a>
+            <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
+              <a class="nav-link" href="/my-account/courses/">Quản lý</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/tests" routerLinkActive="active" ariaCurrentWhenActive="page">Đề thi online</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/my-account/courses/">Flashcards</a>
-            </li>
-            <li class="nav-item">
+            <li *ngIf="!isLoggedIn" class="nav-item">
               <a class="btn btn-round btn-block btn-primary" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Đăng nhập</a>
             </li>
 
-            <li class="nav-item user-topnav dropdown d-none d-lg-block">
+            <li *ngIf="isLoggedIn" class="nav-item user-topnav dropdown d-none d-lg-block">
               <a #dropdownToggle class="nav-link dropdown-toggle user-topnav-profile" role="button" 
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                   (click)="toggleDropdown()">
@@ -49,11 +43,11 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/studyplan/">Lịch học của tôi</a>
                 <a class="dropdown-item" href="/my-account/">Trang cá nhân</a>
-                <a class="dropdown-item" href="/logout/">Đăng xuất</a>
+                <a class="dropdown-item" href="/logout">Đăng xuất</a>
               </div>
             </li>
-            <!-- Responsive on smartphone -->
-            <!-- <li class="nav-item d-lg-none">
+            <!-- Responsive -->
+            <li class="nav-item d-lg-none">
               <a class="nav-link" href="/notifications/">Thông báo </a>
             </li>
             <li class="nav-item d-lg-none">
@@ -63,8 +57,8 @@
               <a class="nav-link" href="/my-account/">Trang cá nhân</a>
             </li>
             <li class="nav-item d-lg-none">
-              <a class="nav-link" href="/logout/">Đăng xuất</a>
-            </li> -->
+              <a class="nav-link" href="/logout">Đăng xuất</a>
+            </li>
             <!-- End of responsive -->
           </ul>
         </div>

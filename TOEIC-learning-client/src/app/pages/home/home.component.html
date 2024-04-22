@@ -1,18 +1,18 @@
-<link rel='stylesheet' href="/assets/static/css/main.min.css" />
-
 <div class="site-content-wrapper">
     <div class="content-wrapper">
-        <div class="home-section sky-bg pt-3">
+        <div *ngIf="isLoggedIn" class="home-section sky-bg pt-3">
             <div class="container">
-                <div class="home-section-top">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-5">
-                            <h1 class="text-primary" id="xin-chào,-an2572003">Xin chào, an2572003!</h1>
+                <div>
+                    <div class="home-section-top">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <h1 class="text-primary" id="xin-chào,-an2572003">Xin chào, {{username}}!</h1>
+                            </div>
+                            <div class="col-sm-12 col-md-7"></div>
                         </div>
-                        <div class="col-sm-12 col-md-7"></div>
                     </div>
+                    <br>
                 </div>
-                <br>
                 <h2 class="text-primary" id="lịch-học-hôm-nay">Lịch học hôm nay</h2>
                 <p class="font-italic">Bạn không có lịch học hôm nay. Vui lòng vào 
                     <a href="/studyplan/">Lịch học của tôi</a> để xem thêm hoặc tạo mới.
@@ -41,7 +41,7 @@
                             <div>Kết quả: 0/12</div>
                             <br>
                             <div>
-                                <a href="/tests/4690/results/12344797/">[Xem chi tiết]</a>
+                                <a routerLink="/tests/4509">[Xem chi tiết]</a>
                             </div>
                         </div>
                     </div>
