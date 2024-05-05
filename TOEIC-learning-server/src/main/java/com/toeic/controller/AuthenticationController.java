@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200") // origins = "*" for all types of url
 public class AuthenticationController {
-private final AuthenticationService authenticationService;
+	private final AuthenticationService authenticationService;
 	
 	@PostMapping("/signup")
 	public ResponseEntity<User> signup(@RequestBody SignUpRequest signUpRequest) {

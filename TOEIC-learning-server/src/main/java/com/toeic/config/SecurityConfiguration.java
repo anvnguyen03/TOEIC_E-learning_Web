@@ -30,7 +30,6 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfiguration {
 	
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
-	private final CustomCorsFilter customCorsFilter;
 	private final UserService userService;
 	
 	@Bean
@@ -48,7 +47,6 @@ public class SecurityConfiguration {
 		
 		http
 			.csrf(csrf -> csrf.disable())
-			.cors(cors -> cors.disable())	// cors filter be executed after all authen and author filters by default
 			.authorizeHttpRequests(request -> request
 												.requestMatchers("/api/v1/auth/**")
 												.permitAll()

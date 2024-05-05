@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
           }
         })
       }
-    }, 1000)
+    }, 10000)
   }
 
   checkLogin() {
