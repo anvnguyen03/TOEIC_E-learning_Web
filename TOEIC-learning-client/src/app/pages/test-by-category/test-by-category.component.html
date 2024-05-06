@@ -155,17 +155,17 @@
                         <nav class="jqpages">
                             <div class="pagination">
                                 <span class="page-item">
-                                    <a href="tests?{{param_title_url}}page={{current_page>1 ? current_page-1:1}}" class="page-link">
+                                    <a href="tests/{{cate_name}}?{{param_title_url}}page={{current_page>1 ? current_page-1:1}}" class="page-link">
                                         <i class="fas fa-chevron-left"></i>
                                     </a>             
                                 </span>
                                 @for(number of getPageRange(total_page); track number) {
                                     <span class="page-item">
-                                        <a href="tests?{{param_title_url}}page={{number}}" class="page-link">{{number}}</a> 
+                                        <a href="tests/{{cate_name}}?{{param_title_url}}page={{number}}" class="page-link">{{number}}</a> 
                                     </span>
                                 }
                                 <span class="page-item">
-                                    <a href="tests?{{param_title_url}}page={{current_page<total_page ? current_page+1:total_page}}" class="page-link">
+                                    <a href="tests/{{cate_name}}?{{param_title_url}}page={{current_page<total_page ? current_page+1:total_page}}" class="page-link">
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </span>

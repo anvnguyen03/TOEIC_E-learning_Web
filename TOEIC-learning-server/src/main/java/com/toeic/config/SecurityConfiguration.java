@@ -31,16 +31,17 @@ public class SecurityConfiguration {
 	
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	private final UserService userService;
+	private String[] testsUrl = {"/api/v1/test-categories/", "/api/v1/tests/**", "/api/v1/tests"};
 	
-	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200/"));
-		configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "OPTIONS"));
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}
+//	@Bean
+//	CorsConfigurationSource corsConfigurationSource() {
+//		CorsConfiguration configuration = new CorsConfiguration();
+//		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200/"));
+//		configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "OPTIONS"));
+//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//		source.registerCorsConfiguration("/**", configuration);
+//		return source;
+//	}
 	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -48,11 +49,10 @@ public class SecurityConfiguration {
 		http
 			.csrf(csrf -> csrf.disable())
 			.authorizeHttpRequests(request -> request
-												.requestMatchers("/api/v1/auth/**")
-												.permitAll()
+												.requestMatchers(testsUrl).permitAll()
+												.requestMatchers("/api/v1/auth/**").permitAll()
 												.requestMatchers("/api/v1/admin").hasAnyAuthority(Role.ADMIN.name())
 												.requestMatchers("/api/v1/user").hasAnyAuthority(Role.USER.name())
-												.requestMatchers("/api/v1/test/get-all").hasAuthority(Role.USER.name())
 												.anyRequest().authenticated())
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authenticationProvider(AuthenticationProvider())
