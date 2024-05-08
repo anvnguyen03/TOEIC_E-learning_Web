@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, UrlSegment } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TestService } from '../../services/test/test.service';
 
@@ -26,11 +26,30 @@ export class TestsComponent implements OnInit{
   ngOnInit(): void {
     let title:string = '';
     let page:number = 1;
-    
+
+    const current_url:UrlSegment[] = this.activatedRoute.snapshot.url;
+    console.log(current_url);
+
     this.activatedRoute.queryParams.subscribe(params => {
       title = params['title'] || '';
       page = params['page'] ? +params['page'] : 1;
     });
+    if(current_url.length == 1) {
+      this.getAllTest(title, page-1);
+    } else if(current_url.length==2) {
+      this.getAllTestByCategory(current_url[1].path, title, page-1);
+    }
+  }
+
+  getUsername():string {
+    return this.authService.getUsername()
+  }
+
+  getPageRange(totalPage: number): number[] {
+    return Array.from({ length: totalPage }, (_, i) => i + 1); // Creates [1, 2, 3, ..., totalPage]
+  }
+
+  getAllTest(title:string, page:number, size:number=5) {
     this.testService.getAll(title, page-1, 5).subscribe({
       next: (response) => {
         console.log(response);
@@ -47,11 +66,20 @@ export class TestsComponent implements OnInit{
     });
   }
 
-  getUsername():string {
-    return this.authService.getUsername()
-  }
-
-  getPageRange(totalPage: number): number[] {
-    return Array.from({ length: totalPage }, (_, i) => i + 1); // Creates [1, 2, 3, ..., totalPage]
+  getAllTestByCategory(cate_name:string, title:string, page:number) {
+    this.testService.getAllByCategory(cate_name, title, page-1, 5).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.total_page = response[0].totalPages;
+        this.listTest = response;
+        this.current_page = page;
+        if(title != '') {
+          this.param_title_url = `title=${title}&`;
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 }

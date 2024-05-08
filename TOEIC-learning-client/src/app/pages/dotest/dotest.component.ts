@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './dotest.component.css'
 })
 export class DotestComponent {
-
+  ngOnInit():void {
+    
+  }
 }
