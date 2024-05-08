@@ -50,7 +50,7 @@ export class TestsComponent implements OnInit{
   }
 
   getAllTest(title:string, page:number, size:number=5) {
-    this.testService.getAll(title, page-1, 5).subscribe({
+    this.testService.getAll(title, page, 5).subscribe({
       next: (response) => {
         console.log(response);
         this.total_page = response[0].totalPages;
@@ -67,7 +67,7 @@ export class TestsComponent implements OnInit{
   }
 
   getAllTestByCategory(cate_name:string, title:string, page:number) {
-    this.testService.getAllByCategory(cate_name, title, page-1, 5).subscribe({
+    this.testService.getAllByCategory(cate_name, title, page, 5).subscribe({
       next: (response) => {
         console.log(response);
         this.total_page = response[0].totalPages;

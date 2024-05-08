@@ -29,7 +29,7 @@ public class Test{
 	private long id;
 	@Column(name = "test_title")
 	private String testTitle;
-	private boolean status;
+	private int status = 1;
 	
 	@JsonIgnore
 	@ManyToOne

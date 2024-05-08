@@ -3,11 +3,9 @@ import { TestsComponent } from './pages/tests/tests.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { authGuard } from './guards/auth.guard';
 import { DotestComponent } from './pages/dotest/dotest.component';
 import { loggedInGuard } from './guards/logged-in.guard';
 import { LogoutComponent } from './pages/logout/logout.component';
-import { TestByCategoryComponent } from './pages/test-by-category/test-by-category.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -15,6 +13,6 @@ export const routes: Routes = [
     {path: 'tests/:id/:title', component: DotestComponent},
     {path: 'login', component: LoginComponent, canActivate: [loggedInGuard]},
     {path: 'logout', component: LogoutComponent},
-    {path: 'register', component: RegisterComponent},
+    {path: 'register', component: RegisterComponent, canActivate: [loggedInGuard]},
     {path: '', redirectTo: "/home", pathMatch: "full"}
 ];
