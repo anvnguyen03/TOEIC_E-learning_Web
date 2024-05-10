@@ -1,6 +1,8 @@
 package com.toeic.entity;
 
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -14,14 +16,12 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "test")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
 public class Test{
 	
 	@Id
@@ -29,10 +29,28 @@ public class Test{
 	private long id;
 	@Column(name = "test_title")
 	private String testTitle;
-	private int status = 1;
+	
+	private TestStatus status;
 	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="test_category_id")
 	private TestCategory testCategory;
+	
+	private int duration;
+	
+	@Column(name = "created_at")
+	private Date createdAt;
+	
+	@Column(name = "updated_at")
+	private Date updatedAt;
+	
+	public Test(String testTitle, int status, TestCategory testCategory) {
+		this.testTitle = testTitle;
+		this.status = TestStatus.ENABLE;
+		this.testCategory = testCategory;
+		this.duration = testCategory.getDuration();
+		this.createdAt = new Date();
+		this.updatedAt = new Date();
+	}
 }
