@@ -3,6 +3,7 @@ package com.toeic.service.impl;
 import java.util.HashMap;
 import java.util.Optional;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -50,7 +51,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			user.setRole(Role.USER);
 			user.setStatus(Status.ACTIVE);
 			user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
-
+			System.out.println("đăng ký mật khẩu="+ user.getPassword() );
 			return userRepository.save(user);
 		}
 				

@@ -12,4 +12,5 @@ import com.toeic.entity.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 	Optional<User> findByEmail(String email);
 	User findByRole(Role role);
+	User findByFullname(String fullname);
 }

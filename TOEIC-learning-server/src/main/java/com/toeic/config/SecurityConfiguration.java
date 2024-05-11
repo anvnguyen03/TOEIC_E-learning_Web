@@ -1,7 +1,5 @@
 package com.toeic.config;
 
-import java.util.Arrays;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -12,9 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsConfigurationSource;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -32,15 +27,6 @@ public class SecurityConfiguration {
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	private final UserService userService;
 	
-	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200/"));
-		configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "OPTIONS"));
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}
 	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -51,7 +37,8 @@ public class SecurityConfiguration {
 												.requestMatchers("/api/v1/auth/**")
 												.permitAll()
 												.requestMatchers("/api/v1/admin").hasAnyAuthority(Role.ADMIN.name())
-												.requestMatchers("/api/v1/user").hasAnyAuthority(Role.USER.name())
+												.requestMatchers("/api/v1/user/**").hasAnyAuthority(Role.USER.name())
+												.requestMatchers("/api/v1/login/**").anonymous()
 												.requestMatchers("/api/v1/test/get-all").hasAuthority(Role.USER.name())
 												.anyRequest().authenticated())
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
