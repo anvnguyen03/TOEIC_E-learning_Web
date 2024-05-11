@@ -7,6 +7,8 @@ import { authGuard } from './guards/auth.guard';
 import { DotestComponent } from './pages/dotest/dotest.component';
 import { loggedInGuard } from './guards/logged-in.guard';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { FogotPasswordComponent } from './pages/fogot-password/fogot-password.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -15,5 +17,8 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent, canActivate: [loggedInGuard]},
     {path: 'logout', component: LogoutComponent},
     {path: 'register', component: RegisterComponent},
+    { path: 'my-profile', component: ProfileComponent}, // Define the route for the profile page
+    {path: 'my-fogot-password/:email/:code', component: FogotPasswordComponent}, // sửa dùng chữ r đi
+    {path: 'my-fogot-password',component: FogotPasswordComponent},  // sửa dùng chữ r đi
     {path: '', redirectTo: "/home", pathMatch: "full"}
 ];

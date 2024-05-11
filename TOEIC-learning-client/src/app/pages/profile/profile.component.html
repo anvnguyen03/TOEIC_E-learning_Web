@@ -1,0 +1,56 @@
+<div class="site-content-wrapper">
+  <div class="content-wrapper center">
+    <form *ngIf="userInfoForm" [formGroup]="userInfoForm" style="background-color: blanchedalmond;padding: 10%;">
+      <div>
+        <label for="fullname">Họ và Tên:</label>
+        <input type="text" id="fullname" formControlName="fullname">
+        <div *ngIf="userInfoForm.get('fullname')?.errors && userInfoForm.get('fullname')?.touched">
+          <div *ngIf="userInfoForm.get('fullname')?.hasError('required')" class="notValid">Họ và Tên là bắt buộc</div>
+          <div *ngIf="userInfoForm.get('fullname')?.hasError('maxlength')" class="notValid">Họ và Tên tối đa 30 ký tự
+          </div>
+          <div *ngIf="userInfoForm.get('fullname')?.hasError('minlength')" class="notValid">Họ và Tên phải có ít nhất 6
+            ký tự
+          </div>
+          <div *ngIf="userInfoForm.get('fullname')?.hasError('invalidName')" class="notValid">Họ và Tên chỉ được chứa
+            tiếng việt
+          </div>
+        </div>
+      </div>
+      <button *ngIf="!editMode[0]" (click)="toggleEditMode(0)">Chỉnh sửa</button>
+      <button *ngIf="editMode[0]" (click)="saveChanges(0)">Lưu</button>
+      <div style="margin-top: 40px;">
+        <div>
+          <label for="password">Mật khẩu:</label>
+          <input type="password" id="password" formControlName="password">
+          <div *ngIf="userInfoForm.get('password')?.errors && userInfoForm.get('password')?.touched">
+            <div *ngIf="userInfoForm.get('password')?.hasError('required')" class="notValid">Mật khẩu là bắt buộc</div>
+            <div *ngIf="userInfoForm.get('password')?.hasError('maxlength')" class="notValid">Mật khẩu tối đa 30 ký tự
+            </div>
+            <div *ngIf="userInfoForm.get('password')?.hasError('minlength')" class="notValid">Mật khẩu phải có ít nhất 6
+              ký tự</div>
+            <div *ngIf="userInfoForm.get('password')?.hasError('invalidpassword')" class="notValid">Mật khẩu chỉ được
+              chứa
+              chữ
+              cái và số
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <label for="password">Xác Nhận Mật khẩu:</label>
+          </div>
+          <input type="password" id="confirmpassword" formControlName="confirmpassword">
+          <div *ngIf="userInfoForm.get('confirmpassword')?.errors && userInfoForm.get('confirmpassword')?.touched">
+            <div *ngIf="userInfoForm.get('confirmpassword')?.hasError('required')" class="notValid">Nhập lại mật khẩu là bắt
+              buộc
+            </div>
+            <div *ngIf="userInfoForm.get('password')?.value !== userInfoForm.get('confirmpassword')?.value"
+              class="notValid">Mật khẩu không trùng</div>
+          </div>
+        </div>
+        <button *ngIf="!editMode[1]" (click)="toggleEditMode(1)">Chỉnh sửa</button>
+        <button *ngIf="editMode[1]" (click)="saveChanges(1)">Lưu</button>
+      </div>
+    </form> 
+  </div>
+</div>
