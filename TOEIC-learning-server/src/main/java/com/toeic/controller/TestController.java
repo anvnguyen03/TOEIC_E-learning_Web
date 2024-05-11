@@ -42,8 +42,9 @@ public class TestController {
 		return testService.getById(id);
 	}
 	
-	@PostMapping(value="/submit")
-	public ResponseEntity<String> submit(@RequestParam Map<String,String> requestParams) {
+	@PostMapping(value="/{id}/submit")
+	public ResponseEntity<String> submit(@RequestParam Map<String,String> requestParams, 
+			@PathVariable long id) {
 		Set<String> keys = requestParams.keySet();
 		for(var key : keys) {
 			System.out.println(key);
