@@ -1,5 +1,6 @@
 package com.toeic.service.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -15,31 +16,33 @@ import com.toeic.dto.JwtAuthenticationResponse;
 import com.toeic.dto.SignInRequest;
 import com.toeic.dto.SignUpRequest;
 import com.toeic.dto.ValidateTokenRequest;
+import com.toeic.dto.response.SignupResponse;
+import com.toeic.email.EmailSender;
 import com.toeic.entity.Role;
 import com.toeic.entity.Status;
 import com.toeic.entity.User;
-import com.toeic.repository.UserRepository;
 import com.toeic.service.AuthenticationService;
 import com.toeic.service.JWTService;
 import com.toeic.service.UserService;
 
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final AuthenticationManager authenticationManager;
 	private final JWTService jwtService;
 	private final UserService userService;
+	private final EmailSender emailSender;
 
 	@Override
-	public User signup(SignUpRequest signUpRequest) {
+	public SignupResponse signup(SignUpRequest signUpRequest) {
 		User user = new User();
 
-		Optional<User> userExisted = userRepository.findByEmail(signUpRequest.getEmail());
+		Optional<User> userExisted = userService.findByEmail(signUpRequest.getEmail());
 		
 		// kiểm tra xem đã tồn tại User này chưa
 		if (userExisted.isPresent()) {
@@ -48,10 +51,26 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			user.setEmail(signUpRequest.getEmail());
 			user.setFullname(signUpRequest.getFullname());
 			user.setRole(Role.USER);
-			user.setStatus(Status.ACTIVE);
+			user.setStatus(Status.LOCKED);
 			user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
-			return userRepository.save(user);
+			user = userService.save(user);
+			
+			SignupResponse signupResponse = new SignupResponse();
+			String activateToken = jwtService.generateActivateToken(user);
+			
+			signupResponse.setToken(activateToken);
+			System.out.println(activateToken);
+			try {
+				emailSender.sendActivationLink(user, "http://localhost:4200/signup", activateToken);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return signupResponse;
 		}
 				
 	}
@@ -73,7 +92,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 		// kiểm tra xem đối tượng authentication đã xác thực thành công chưa
 		if (authentication != null && authentication.isAuthenticated()) {
-			var user = userRepository.findByEmail(signInRequest.getEmail())
+			var user = userService.findByEmail(signInRequest.getEmail())
 					.orElseThrow(() -> new IllegalArgumentException("Invalid Email or password"));
 			var jwt = jwtService.generateToken(user);
 			var refreshToken = jwtService.generateRefreshToken(new HashMap<>(), user);
@@ -106,6 +125,25 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean verifyUser(String code) {
+		String username = jwtService.extractUsername(code);
+		if(!username.isEmpty()) {
+			UserDetails userDetails = this.userService.userDetailsService().loadUserByUsername(username);
+			Optional<User> user = this.userService.findByUsername(username);
+			if (jwtService.isTokenValid(code, userDetails)) {
+				User newUser = user.get();
+				newUser.setStatus(Status.ACTIVE);
+				this.userService.save(newUser);
+				this.userService.deleteByEmailAndStatus(user.get().getEmail(), Status.LOCKED);
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return false;
 	}
 
 }
