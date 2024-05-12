@@ -1,0 +1,27 @@
+<div class="form">
+    <h2 mat-dialog-title>Import question</h2>
+    <mat-dialog-content class="mat-typography">
+        <p>Bước 1: Import file excel cho toàn bộ câu hỏi của đề thi</p>
+        <p>Bước 2: Import các file ảnh tương ứng với các câu hỏi trong file excel</p>
+        <p>Bước 3: Import file audio cho phần nghe của bài thi</p>
+    </mat-dialog-content>
+    <form class="example-form">
+
+        <mat-label>File excel for questions</mat-label>
+        <input class="form-control" (change)="onFileExcelSelected($event)" type="file" id="questions" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        <br>
+
+        <mat-label>Files for images</mat-label>
+        <input class="form-control" (change)="onFileImageSelected($event)" type="file" id="images" multiple accept="image/*">
+        <br>
+
+        <mat-label>File for audio</mat-label>
+        <input class="form-control" (change)="onFileAudioSelected($event)" type="file" id="audio" accept="audio/*">
+
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button (click)="submit()" mat-button [mat-dialog-close]="true"
+                cdkFocusInitial>Import</button>
+        </mat-dialog-actions>
+    </form>
+</div>

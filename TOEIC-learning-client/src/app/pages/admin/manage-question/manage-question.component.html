@@ -4,17 +4,17 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <button mat-button type="button" class="btn btn-success"> + Import Excel</button>
+        <button mat-button (click)="openDialog()" type="button" class="btn btn-success"> + Import Excel</button>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <!-- <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"> -->
                 <table datatable *ngIf="questions.length > 0" [dtOptions]="dtOptions"
-                    class="row-border hover" style="width:100%">
+                    class="row-border hover">
                     <thead>
                         <tr>
-                            <th style="width: 5%;">No.</th>
-                            <th style="width: 5%;">Content</th>
+                            <th style="width: 1%;">No.</th>
+                            <th style="width: 9%;">Content</th>
                             <th style="width: 5%;">Option A</th>
                             <th style="width: 5%;">Option B</th>
                             <th style="width: 5%;">Option C</th>
@@ -52,7 +52,8 @@
                                 <span>{{question.correctOption}}</span>
                             </td>
                             <td>
-                                <span>{{question.image}}</span>
+                                <!-- <span>{{question.image}}</span> -->
+                                <img [src]="question.image" class="avatar" alt="None">
                             </td>
                             <td>
                                 <span>{{question.audio}}</span>

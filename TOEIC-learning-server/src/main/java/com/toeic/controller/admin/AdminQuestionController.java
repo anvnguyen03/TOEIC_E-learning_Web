@@ -59,31 +59,8 @@ public class AdminQuestionController {
         if (files == null || files.isEmpty()) {
             return new ResponseEntity<>("Vui lòng chọn ảnh để upload.", HttpStatus.BAD_REQUEST);
         }
-        try {
-            // Đường dẫn thư mục tĩnh cho ảnh
-        	Test test = testRepository.findById(testId).orElseThrow();
-            String imagePath = test.getTestTitle().toString();
-            Path uploadImagePath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "static", "images", imagePath);
-
-            if (!Files.exists(uploadImagePath)) {
-                Files.createDirectories(uploadImagePath);
-            }
-            List<String> imageNames = new ArrayList<>();
-
-            for (MultipartFile file : files) {
-                String imageName = file.getOriginalFilename();
-                Path imageFile = uploadImagePath.resolve(imageName);
-
-                try (OutputStream osImage = Files.newOutputStream(imageFile)) {
-                    osImage.write(file.getBytes());
-                }
-                imageNames.add(imageName);
-            }
-
-            return ResponseEntity.ok("Ảnh upload thành công: " + String.join(", ", imageNames));
-        } catch (Exception e) {
-            return new ResponseEntity<>("Lỗi khi upload ảnh: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        
+        return questionService.uploadQuestionsImages(files, testId);
     }
 	
 	@PostMapping("/question/upload-audio")
@@ -94,32 +71,7 @@ public class AdminQuestionController {
             return new ResponseEntity<>("Vui lòng chọn audio để upload", HttpStatus.BAD_REQUEST);
         }
 
-        try {
-            // Đường dẫn thư mục tĩnh cho âm thanh
-        	Test test = testRepository.findById(testId).orElseThrow();
-            String audioPath = test.getTestTitle().toString();
-            Path uploadAudioPath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "static", "audios", audioPath);
-
-            if (!Files.exists(uploadAudioPath)) {
-                Files.createDirectories(uploadAudioPath);
-            }
-
-            List<String> audioNames = new ArrayList<>();
-
-            for (MultipartFile file : files) {
-                String audioName = file.getOriginalFilename();
-                Path audioFile = uploadAudioPath.resolve(audioName);
-
-                try (OutputStream osAudio = Files.newOutputStream(audioFile)) {
-                    osAudio.write(file.getBytes());
-                }
-                audioNames.add(audioName);
-            }
-
-            return ResponseEntity.ok("Upload audio thành công: " + String.join(", ", audioNames));
-        } catch (Exception e) {
-            return new ResponseEntity<>("Upload audio thất bại: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return questionService.uploadQuestionsAudio(files, testId);
     }
 	
 }

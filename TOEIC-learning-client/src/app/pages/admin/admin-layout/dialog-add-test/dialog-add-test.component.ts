@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   selector: 'app-dialog-add-test',
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, MatInputModule,
-     MatFormFieldModule, ReactiveFormsModule,MatSelectModule],
+     MatFormFieldModule, ReactiveFormsModule, MatSelectModule],
   templateUrl: './dialog-add-test.component.html',
   styleUrl: './dialog-add-test.component.css'
 })
