@@ -66,4 +66,13 @@ public class User implements UserDetails{
 			return false;
 		}
 	}
+	public User(String fullname, String email, String password, Role role, Status status) {
+		super();
+		this.fullname = fullname;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.status = status;
+	}
+	
 }
