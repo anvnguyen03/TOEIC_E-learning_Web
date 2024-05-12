@@ -38,7 +38,7 @@ public class SecurityConfiguration {
 												.requestMatchers("/images/**").permitAll()
 				                                .requestMatchers("/audios/**").permitAll()
 												.requestMatchers("/api/v1/auth/**").permitAll()
-												.requestMatchers("/api/v1/admin").hasAnyAuthority(Role.ADMIN.name())
+												.requestMatchers("/api/v1/admin/**").hasAnyAuthority(Role.ADMIN.name())
 												.requestMatchers("/api/v1/user").hasAnyAuthority(Role.USER.name())
 												.anyRequest().authenticated())
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

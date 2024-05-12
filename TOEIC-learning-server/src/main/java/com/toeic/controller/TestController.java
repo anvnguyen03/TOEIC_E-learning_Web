@@ -29,6 +29,11 @@ public class TestController {
 		return testService.getAll(title.orElse(""), page.orElse(0), size.orElse(10));
 	}
 	
+	@GetMapping("/getallnopaging")
+	public ResponseEntity<?> getAllNoPaging() {
+		return testService.getAllNoPagin();
+	}
+	
 	@GetMapping("/category/{catename}")
 	public ResponseEntity<?> getByCategory(@PathVariable("catename") Optional<String> catename,
 			@RequestParam Optional<String> title, 

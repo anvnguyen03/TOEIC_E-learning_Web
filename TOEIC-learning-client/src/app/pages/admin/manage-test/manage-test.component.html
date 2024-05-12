@@ -1,0 +1,55 @@
+<!-- Page Heading -->
+<h1 class="m-0 font-weight-bold text-primary">Danh sách đề thi</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <button mat-button (click)="openDialog()" type="button" class="btn btn-success"> + Thêm đề thi</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <!-- <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"> -->
+                <table datatable *ngIf="tests.length > 0" [dtOptions]="dtOptions"
+                    class="row-border hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Test</th>
+                            <th>Duration</th>
+                            <th>Status</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let test of tests">
+                            <td>
+                                <span>{{test.id}}</span>
+                            </td>
+                            <td>
+                                <span>{{test.testTitle}}</span>
+                            </td>
+                            <td>
+                                <span>{{test.duration}}</span>
+                            </td>
+                            <td>
+                                <a (click)="changeStatus(test.id)"><span *ngIf="test.status == 'ENABLE'" class="badge bg-success me-1">{{test.status}}</span></a>
+                                <a (click)="changeStatus(test.id)"><span *ngIf="test.status == 'DELETED'" class="badge bg-dark me-1">{{test.status}}</span></a>
+                            </td>
+                            <td>
+                                <span>{{test.createdAt | date:'medium'}}</span>
+                            </td>
+                            <td>
+                                <span>{{test.updatedAt | date:'medium'}}</span>
+                            </td>
+                            <td>
+                                <button (click)="manageQuestion(test.id)" type="button" class="btn btn-info">Manage question</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
