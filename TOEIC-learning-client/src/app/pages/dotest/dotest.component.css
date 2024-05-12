@@ -5425,3 +5425,9 @@ a.plyr__control {
 .plyr [hidden] {
     display: none!important
 }
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

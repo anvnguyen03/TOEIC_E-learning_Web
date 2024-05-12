@@ -26,7 +26,7 @@ public class SecurityConfiguration {
 	
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	private final UserService userService;
-	private String[] testsUrl = {"/api/v1/test-categories/", "/api/v1/tests/**", "/api/v1/tests"};
+	private String[] testsUrl = {"/api/v1/test-categories/", "/api/v1/tests/**", "/api/v1/questions/**"};
 	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

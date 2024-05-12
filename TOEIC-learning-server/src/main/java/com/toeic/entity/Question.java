@@ -1,5 +1,7 @@
 package com.toeic.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -66,5 +68,6 @@ public class Question {
 	
 	@ManyToOne
 	@JoinColumn(name = "test_id", nullable = false)
+	@JsonIgnore
 	private Test test;
 }

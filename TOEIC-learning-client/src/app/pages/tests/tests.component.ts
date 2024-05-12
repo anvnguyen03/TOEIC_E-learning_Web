@@ -3,11 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink, UrlSegment } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TestService } from '../../services/test/test.service';
+import { NavbarHomeComponent } from '../layout/navbar-home/navbar-home.component';
+import { FooterHomeComponent } from '../layout/footer-home/footer-home.component';
 
 @Component({
   selector: 'app-tests',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, NavbarHomeComponent, FooterHomeComponent],
   templateUrl: './tests.component.html',
   styleUrl: './tests.component.css'
 })

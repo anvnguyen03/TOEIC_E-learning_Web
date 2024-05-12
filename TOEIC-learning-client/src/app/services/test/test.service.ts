@@ -17,4 +17,8 @@ export class TestService {
   getAllByCategory(cate_name:string, title:string, page:number, size:number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/category/${cate_name}?title=${title}&page=${page}&size=${size}`)
   }
+
+  getById(id: any): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/id/${id}`)
+  }
 }

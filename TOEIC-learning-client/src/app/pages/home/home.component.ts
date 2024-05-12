@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { NavbarHomeComponent } from '../layout/navbar-home/navbar-home.component';
+import { FooterHomeComponent } from '../layout/footer-home/footer-home.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [NavbarHomeComponent, FooterHomeComponent, RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

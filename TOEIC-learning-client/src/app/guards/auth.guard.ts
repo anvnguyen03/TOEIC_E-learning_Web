@@ -43,7 +43,7 @@ export const authGuard: CanActivateFn = (
     map((response) => {
       if (response == true) {
         // Nếu token hợp lệ, cho phép truy cập route 
-        return protectedRoute.includes(state.url) ? true : router.createUrlTree(['/login']);
+        return true;
       } else {
         localStorage.removeItem('token');
         // Nếu token không hợp lệ, chuyển hướng đến trang đăng nhập

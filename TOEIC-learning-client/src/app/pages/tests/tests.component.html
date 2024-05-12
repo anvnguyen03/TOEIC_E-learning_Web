@@ -1,3 +1,4 @@
+<app-navbar-home></app-navbar-home>
 
 <div class="site-content-wrapper">
     <div class="content-header pb-0 gray-bg">
@@ -121,7 +122,7 @@
                             <!-- Start Test Item-->
                             <div class="col-6 col-md-3">
                                 <div class="testitem-wrapper">
-                                    <a class="text-dark" href="/tests/4264/ielts-plus-volume-1-listening-test-1/">
+                                    <a class="text-dark" href="/tests/{{test.id}}/{{test.testTitle}}/">
                                         <h2 class="testitem-title" id="ielts-plus-volume-1---listening-test-1">
                                             {{test.testTitle}}
                                         </h2>
@@ -142,8 +143,8 @@
                                         <br>
                                     </a>
                                     <div class="testitem-start-test">
-                                        <a class="text-dark" href="/tests/4264/ielts-plus-volume-1-listening-test-1/"></a>
-                                        <a href="/tests/4264/ielts-plus-volume-1-listening-test-1/" class="btn btn-block btn-outline-primary">Chi tiết</a>
+                                        <a class="text-dark" href="/tests/{{test.id}}/{{test.testTitle}}/"></a>
+                                        <a href="/tests/{{test.id}}/{{test.testTitle}}/" class="btn btn-block btn-outline-primary">Chi tiết</a>
                                     </div>
                                 </div>
                             </div>
@@ -194,3 +195,5 @@
         </div>
     </div>
 </div>
+
+<app-footer-home></app-footer-home>
