@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../model/user';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,10 +16,10 @@ export class ProfileComponent implements OnInit {
   userInfoForm!: FormGroup;
   editMode: [boolean,boolean] = [false,false];
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.authService.getUserInfo().subscribe({
+    this.userService.getUserInfo().subscribe({
       next: (data: User) => {
         this.user = data;
         this.initForm();
@@ -94,7 +94,7 @@ export class ProfileComponent implements OnInit {
       newPassword = this.userInfoForm.get('password')?.value;
     }
 
-    this.authService.changeUserInfo(newFullname,newPassword).subscribe({
+    this.userService.changeUserInfo(newFullname,newPassword).subscribe({
       next: (data: User) => {
         this.user = data;
         console.log(data)

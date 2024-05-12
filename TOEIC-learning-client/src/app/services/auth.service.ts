@@ -10,7 +10,7 @@ export class AuthService {
   
 
   private baseURL = "http://localhost:8080/api/v1/auth";
-  private userURL = "http://localhost:8080/api/v1/user";
+ 
   private loginURL = "http://localhost:8080/api/v1/login";
   constructor(private httpClient: HttpClient) { }
 
@@ -60,30 +60,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token')
   }
-  // getUserInfo(): Observable<User> {
-  //   return this.httpClient.get<User>(`${this.baseURL}/current`);
-  // }
-  getUserInfo(): Observable<any> {
-    const headers:HttpHeaders = this.getHeader();
-    return this.httpClient.get(`${this.userURL}/current`, { headers: headers });
-  }
-
-  changeUserInfo(newFullname: string | null, newPassword: string | null): Observable<any> {
-    
-    const headers:HttpHeaders = this.getHeader()
-
-    // Include both 'newFullname' and 'newPassword' in the request body
-    const body = {
-      newFullname: newFullname, // Include 'newFullname'
-      newPassword: newPassword
-    };
-
-    return this.httpClient.put(
-      `${this.userURL}/change-info`,
-      body,
-      { headers: headers }
-    );
-  }
+  
   sendFogotPasswordRequest(email: string):  Observable<any>{
     
     const body = { email: email, code:Math.floor(Date.now() * 1000).toString(36)};
