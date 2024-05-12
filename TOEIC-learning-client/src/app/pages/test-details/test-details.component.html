@@ -1,0 +1,1165 @@
+<app-navbar-home></app-navbar-home>
+
+<div class="site-content-wrapper">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-9">
+                    <div class="practice-test-wrapper contentblock">
+                        <div>
+                            <span class="tag gray">TOEIC</span>
+                        </div>
+                        <h1 id="practice-set-2023-toeic-test-1">
+                            {{test.testTitle}}
+                        </h1>
+
+                        <ul class="mt-3 nav nav-horizontal nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link" [class.active]="isTabTestInfo" (click)="switchTabInfo()" role="tab">Thông tin đề thi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [class.active]="isTabSolution" (click)="switchTabInfo()" role="tab">Đáp án/transcript</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade" [ngClass]="{'show active': isTabSolution}" id="test-solutions" role="tabpanel">
+                                <br>
+                                <div>
+                                    <a href="/tests/4590/practice-set-2023-toeic-test-1/solutions/">Xem đáp án đề
+                                        thi</a>
+                                </div>
+                                <br>
+                                <div>Các phần thi:</div>
+                                <ul>
+                                    <li>
+                                        <span class="mr-2">Part 1:
+                                        </span>
+                                        <a href="/tests/4590/practice-set-2023-toeic-test-1/parts/9773/solutions/">Đáp
+                                            án</a>
+                                    </li>
+                                    <li>
+                                        <span class="mr-2">Part 2:
+                                        </span>
+                                        <a href="/tests/4590/practice-set-2023-toeic-test-1/parts/9774/solutions/">Đáp
+                                            án</a>
+                                    </li>
+                                    <li>
+                                        <span class="mr-2">Part 3:
+                                        </span>
+                                        <a href="/tests/4590/practice-set-2023-toeic-test-1/parts/9775/solutions/">Đáp
+                                            án</a>
+                                    </li>
+                                    <li>
+                                        <span class="mr-2">Part 4:
+                                        </span>
+                                        <a href="/tests/4590/practice-set-2023-toeic-test-1/parts/9776/solutions/">Đáp
+                                            án</a>
+                                    </li>
+                                    <li>
+                                        <span class="mr-2">Part 5:
+                                        </span>
+                                        <a href="/tests/4590/practice-set-2023-toeic-test-1/parts/9777/solutions/">Đáp
+                                            án</a>
+                                    </li>
+                                    <li>
+                                        <span class="mr-2">Part 6:
+                                        </span>
+                                        <a href="/tests/4590/practice-set-2023-toeic-test-1/parts/9778/solutions/">Đáp
+                                            án</a>
+                                    </li>
+                                    <li>
+                                        <span class="mr-2">Part 7:
+                                        </span>
+                                        <a href="/tests/4590/practice-set-2023-toeic-test-1/parts/9779/solutions/">Đáp
+                                            án</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-pane fade" [ngClass]="{'show active': isTabTestInfo}" id="test-info" role="tabpanel">
+                                <br>
+                                <div>
+                                    <span class="far fa-clock mr-1"></span>
+                                    <span>Thời gian làm bài: {{test.duration}} phút</span> |
+                                    <span>7 phần thi</span> |
+                                    <span>200 câu hỏi</span>
+                                    | <span>2725 bình luận</span>
+                                </div>
+                                <div>
+                                    <span class="fad fa-user-edit mr-1"></span>
+                                    1685070 người đã luyện tập đề thi này
+                                </div>
+                                <p class="text-danger mt-2"><i>Chú ý: để được quy đổi sang scaled score (ví dụ trên
+                                        thang điểm 990 cho TOEIC hoặc 9.0 cho IELTS), vui lòng chọn chế độ làm FULL
+                                        TEST.</i></p>
+                                <br>
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link" [class.active]="isTabPractice"  (click)="switchTakeTestTab()"  role="tab"
+                                            aria-controls="nav-notes" aria-selected="true">Luyện tập</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" [class.active]="isTabFullTest" (click)="switchTakeTestTab()" role="tab"
+                                            aria-controls="nav-discussions" aria-selected="false">Làm full test</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#test-comments">Thảo luận</a>
+                                    </li>
+                                </ul>
+                                <br>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade " [ngClass]="{'active show': isTabPractice}" id="nav-practice" role="tabpanel">
+                                        <div class="alert alert-success">
+                                            <span class="far fa-lightbulb-on mr-2"></span>Pro tips: Hình thức luyện tập
+                                            từng phần và chọn mức thời gian phù hợp sẽ giúp bạn tập trung vào giải đúng
+                                            các câu hỏi thay vì phải chịu áp lực hoàn thành bài thi.
+                                        </div>
+                                        <br>
+                                        <form method="GET" action="/tests/4590/practice/">
+                                            <div class="form-group">
+                                                <label class="label" for="part">Chọn phần thi bạn muốn làm</label>
+
+                                                <div class="checkbox-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="part-9773" type="checkbox"
+                                                            name="part" value="9773">
+                                                        <div class="checkbox-group-content">
+                                                            <label class="form-check-label" for="part-9773">Part 1 (6
+                                                                câu hỏi)</label>
+                                                            <div>
+
+                                                                <span class="tag gray">[Part 1] Tranh tả người</span>
+
+                                                                <span class="tag gray">[Part 1] Tranh tả cả người và
+                                                                    vật</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="checkbox-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="part-9774" type="checkbox"
+                                                            name="part" value="9774">
+                                                        <div class="checkbox-group-content">
+                                                            <label class="form-check-label" for="part-9774">Part 2 (25
+                                                                câu hỏi)</label>
+                                                            <div>
+
+                                                                <span class="tag gray">[Part 2] Câu hỏi WHAT</span>
+
+                                                                <span class="tag gray">[Part 2] Câu hỏi WHO</span>
+
+                                                                <span class="tag gray">[Part 2] Câu hỏi WHERE</span>
+
+                                                                <span class="tag gray">[Part 2] Câu hỏi WHEN</span>
+
+                                                                <span class="tag gray">[Part 2] Câu hỏi HOW</span>
+
+                                                                <span class="tag gray">[Part 2] Câu hỏi WHY</span>
+
+                                                                <span class="tag gray">[Part 2] Câu hỏi YES/NO</span>
+
+                                                                <span class="tag gray">[Part 2] Câu hỏi đuôi</span>
+
+                                                                <span class="tag gray">[Part 2] Câu hỏi lựa chọn</span>
+
+                                                                <span class="tag gray">[Part 2] Câu yêu cầu, đề
+                                                                    nghị</span>
+
+                                                                <span class="tag gray">[Part 2] Câu trần thuật</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="checkbox-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="part-9775" type="checkbox"
+                                                            name="part" value="9775">
+                                                        <div class="checkbox-group-content">
+                                                            <label class="form-check-label" for="part-9775">Part 3 (39
+                                                                câu hỏi)</label>
+                                                            <div>
+
+                                                                <span class="tag gray">[Part 3] Câu hỏi về chủ đề, mục
+                                                                    đích</span>
+
+                                                                <span class="tag gray">[Part 3] Câu hỏi về danh tính
+                                                                    người nói</span>
+
+                                                                <span class="tag gray">[Part 3] Câu hỏi về chi tiết cuộc
+                                                                    hội thoại</span>
+
+                                                                <span class="tag gray">[Part 3] Câu hỏi về hành động
+                                                                    tương lai</span>
+
+                                                                <span class="tag gray">[Part 3] Câu hỏi kết hợp bảng
+                                                                    biểu</span>
+
+                                                                <span class="tag gray">[Part 3] Câu hỏi về hàm ý câu
+                                                                    nói</span>
+
+                                                                <span class="tag gray">[Part 3] Chủ đề: Company -
+                                                                    General Office Work</span>
+
+                                                                <span class="tag gray">[Part 3] Chủ đề: Company -
+                                                                    Personnel</span>
+
+                                                                <span class="tag gray">[Part 3] Chủ đề: Company -
+                                                                    Business, Marketing</span>
+
+                                                                <span class="tag gray">[Part 3] Chủ đề: Company - Event,
+                                                                    Project</span>
+
+                                                                <span class="tag gray">[Part 3] Chủ đề: Company -
+                                                                    Facility</span>
+
+                                                                <span class="tag gray">[Part 3] Chủ đề: Shopping,
+                                                                    Service</span>
+
+                                                                <span class="tag gray">[Part 3] Chủ đề: Order,
+                                                                    delivery</span>
+
+                                                                <span class="tag gray">[Part 3] Chủ đề:
+                                                                    Transportation</span>
+
+                                                                <span class="tag gray">[Part 3] Câu hỏi về yêu cầu, gợi
+                                                                    ý</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="checkbox-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="part-9776" type="checkbox"
+                                                            name="part" value="9776">
+                                                        <div class="checkbox-group-content">
+                                                            <label class="form-check-label" for="part-9776">Part 4 (30
+                                                                câu hỏi)</label>
+                                                            <div>
+
+                                                                <span class="tag gray">[Part 4] Câu hỏi về chủ đề, mục
+                                                                    đích</span>
+
+                                                                <span class="tag gray">[Part 4] Câu hỏi về danh tính,
+                                                                    địa điểm</span>
+
+                                                                <span class="tag gray">[Part 4] Câu hỏi về chi
+                                                                    tiết</span>
+
+                                                                <span class="tag gray">[Part 4] Câu hỏi về hành động
+                                                                    tương lai</span>
+
+                                                                <span class="tag gray">[Part 4] Câu hỏi kết hợp bảng
+                                                                    biểu</span>
+
+                                                                <span class="tag gray">[Part 4] Câu hỏi về hàm ý câu
+                                                                    nói</span>
+
+                                                                <span class="tag gray">[Part 4] Dạng bài: Telephone
+                                                                    message - Tin nhắn thoại</span>
+
+                                                                <span class="tag gray">[Part 4] Dạng bài: Advertisement
+                                                                    - Quảng cáo</span>
+
+                                                                <span class="tag gray">[Part 4] Dạng bài: Announcement -
+                                                                    Thông báo</span>
+
+                                                                <span class="tag gray">[Part 4] Dạng bài: Talk - Bài
+                                                                    phát biểu, diễn văn</span>
+
+                                                                <span class="tag gray">[Part 4] Dạng bài: Excerpt from a
+                                                                    meeting - Trích dẫn từ buổi họp</span>
+
+                                                                <span class="tag gray">[Part 4] Câu hỏi yêu cầu, gợi
+                                                                    ý</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="checkbox-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="part-9777" type="checkbox"
+                                                            name="part" value="9777">
+                                                        <div class="checkbox-group-content">
+                                                            <label class="form-check-label" for="part-9777">Part 5 (30
+                                                                câu hỏi)</label>
+                                                            <div>
+
+                                                                <span class="tag gray">[Part 5] Câu hỏi từ loại</span>
+
+                                                                <span class="tag gray">[Part 5] Câu hỏi ngữ pháp</span>
+
+                                                                <span class="tag gray">[Part 5] Câu hỏi từ vựng</span>
+
+                                                                <span class="tag gray">[Grammar] Danh từ</span>
+
+                                                                <span class="tag gray">[Grammar] Đại từ</span>
+
+                                                                <span class="tag gray">[Grammar] Tính từ</span>
+
+                                                                <span class="tag gray">[Grammar] Thì</span>
+
+                                                                <span class="tag gray">[Grammar] Thể</span>
+
+                                                                <span class="tag gray">[Grammar] Trạng từ</span>
+
+                                                                <span class="tag gray">[Grammar] Động từ nguyên mẫu có
+                                                                    to</span>
+
+                                                                <span class="tag gray">[Grammar] Danh động từ</span>
+
+                                                                <span class="tag gray">[Grammar] Động từ nguyên
+                                                                    mẫu</span>
+
+                                                                <span class="tag gray">[Grammar] Phân từ và Cấu trúc
+                                                                    phân từ</span>
+
+                                                                <span class="tag gray">[Grammar] Giới từ</span>
+
+                                                                <span class="tag gray">[Grammar] Liên từ</span>
+
+                                                                <span class="tag gray">[Grammar] Mệnh đề quan hệ </span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="checkbox-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="part-9778" type="checkbox"
+                                                            name="part" value="9778">
+                                                        <div class="checkbox-group-content">
+                                                            <label class="form-check-label" for="part-9778">Part 6 (16
+                                                                câu hỏi)</label>
+                                                            <div>
+
+                                                                <span class="tag gray">[Part 6] Câu hỏi từ loại</span>
+
+                                                                <span class="tag gray">[Part 6] Câu hỏi ngữ pháp</span>
+
+                                                                <span class="tag gray">[Part 6] Câu hỏi từ vựng</span>
+
+                                                                <span class="tag gray">[Part 6] Câu hỏi điền câu vào
+                                                                    đoạn văn</span>
+
+                                                                <span class="tag gray">[Part 6] Hình thức: Thư điện tử/
+                                                                    thư tay (Email/ Letter)</span>
+
+                                                                <span class="tag gray">[Part 6] Hình thức: Bài báo
+                                                                    (Article/ Review)</span>
+
+                                                                <span class="tag gray">[Part 6] Hình thức: Thông báo/
+                                                                    văn bản hướng dẫn (Notice/ Announcement
+                                                                    Information)</span>
+
+                                                                <span class="tag gray">[Grammar] Danh từ</span>
+
+                                                                <span class="tag gray">[Grammar] Đại từ</span>
+
+                                                                <span class="tag gray">[Grammar] Tính từ</span>
+
+                                                                <span class="tag gray">[Grammar] Thể</span>
+
+                                                                <span class="tag gray">[Grammar] Trạng từ</span>
+
+                                                                <span class="tag gray">[Grammar] Phân từ và Cấu trúc
+                                                                    phân từ</span>
+
+                                                                <span class="tag gray">[Grammar] Liên từ</span>
+
+                                                                <span class="tag gray">[Grammar] Mệnh đề quan hệ </span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="checkbox-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="part-9779" type="checkbox"
+                                                            name="part" value="9779">
+                                                        <div class="checkbox-group-content">
+                                                            <label class="form-check-label" for="part-9779">Part 7 (54
+                                                                câu hỏi)</label>
+                                                            <div>
+
+                                                                <span class="tag gray">[Part 7] Câu hỏi tìm thông
+                                                                    tin</span>
+
+                                                                <span class="tag gray">[Part 7] Câu hỏi về chủ đề, mục
+                                                                    đích</span>
+
+                                                                <span class="tag gray">[Part 7] Câu hỏi suy luận</span>
+
+                                                                <span class="tag gray">[Part 7] Câu hỏi điền câu</span>
+
+                                                                <span class="tag gray">[Part 7] Cấu trúc: một
+                                                                    đoạn</span>
+
+                                                                <span class="tag gray">[Part 7] Cấu trúc: nhiều
+                                                                    đoạn</span>
+
+                                                                <span class="tag gray">[Part 7] Dạng bài: Email/ Letter:
+                                                                    Thư điện tử/ Thư tay</span>
+
+                                                                <span class="tag gray">[Part 7] Dạng bài: Form - Đơn từ,
+                                                                    biểu mẫu</span>
+
+                                                                <span class="tag gray">[Part 7] Dạng bài: Article/
+                                                                    Review: Bài báo/ Bài đánh giá</span>
+
+                                                                <span class="tag gray">[Part 7] Dạng bài: Advertisement
+                                                                    - Quảng cáo</span>
+
+                                                                <span class="tag gray">[Part 7] Dạng bài: Text message
+                                                                    chain - Chuỗi tin nhắn</span>
+
+                                                                <span class="tag gray">[Part 7] Câu hỏi tìm từ đồng
+                                                                    nghĩa</span>
+
+                                                                <span class="tag gray">[Part 7] Câu hỏi về hàm ý câu
+                                                                    nói</span>
+
+                                                                <span class="tag gray">[Part 7] Dạng bài: Schedule -
+                                                                    Lịch trình, thời gian biểu</span>
+
+                                                                <span class="tag gray">[Part 7] Dạng bài: Instructions:
+                                                                    Văn bản hướng dẫn</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <label class="label" for="time_limit">Giới hạn thời gian (Để trống để
+                                                    làm bài không giới hạn)</label>
+                                                <select name="time_limit" class="custom-select ">
+
+                                                    <option value="" disabled="" selected="">-- Chọn thời gian --
+                                                    </option>
+
+
+                                                    <option value="0">0 phút</option>
+
+                                                    <option value="5">5 phút</option>
+
+                                                    <option value="10">10 phút</option>
+
+                                                    <option value="15">15 phút</option>
+
+                                                    <option value="20">20 phút</option>
+
+                                                    <option value="25">25 phút</option>
+
+                                                    <option value="30">30 phút</option>
+
+                                                    <option value="35">35 phút</option>
+
+                                                    <option value="40">40 phút</option>
+
+                                                    <option value="45">45 phút</option>
+
+                                                    <option value="50">50 phút</option>
+
+                                                    <option value="55">55 phút</option>
+
+                                                    <option value="60">60 phút</option>
+
+                                                    <option value="65">65 phút</option>
+
+                                                    <option value="70">70 phút</option>
+
+                                                    <option value="75">75 phút</option>
+
+                                                    <option value="80">80 phút</option>
+
+                                                    <option value="85">85 phút</option>
+
+                                                    <option value="90">90 phút</option>
+
+                                                    <option value="95">95 phút</option>
+
+                                                    <option value="100">100 phút</option>
+
+                                                    <option value="105">105 phút</option>
+
+                                                    <option value="110">110 phút</option>
+
+                                                    <option value="115">115 phút</option>
+
+                                                    <option value="120">120 phút</option>
+
+                                                    <option value="125">125 phút</option>
+
+                                                    <option value="130">130 phút</option>
+
+                                                    <option value="135">135 phút</option>
+
+                                                </select>
+                                            </div>
+
+
+                                            <button class="btn btn-primary" type="submit">
+                                                LUYỆN TẬP
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade " [ngClass]="{'active show': isTabFullTest}" id="nav-taketest" role="tabpanel">
+                                        <div class="alert alert-warning">
+                                            <span class="far fa-exclamation-circle mr-2"></span>Sẵn sàng để bắt đầu làm
+                                            full test? Để đạt được kết quả tốt nhất, bạn cần dành ra 120
+                                            phút cho bài test này.
+                                        </div>
+                                        <br>
+                                        <a class="btn btn-primary" routerLink="/tests/{{test.id}}/{{test.testTitle}}/start/">
+                                            BẮT ĐẦU THI
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div id="test-comments" class="test-comments-wrapper contentblock">
+                        <h4 id="bình-luận">Bình luận</h4>
+                        <form action="/tests/4590/comment/" method="POST"
+                            class="mt-2 md-comment-input jqform jqcomment-form" data-reload-html="#obj-comments-4590"
+                            data-target="#md-comments-box" data-submitting="false">
+
+                            <input name="csrfmiddlewaretoken" type="hidden"
+                                value="qtrGrvuIqCPwWQ1BeFp3AmyxUmZDL3mV852Yx4EvNm6RZeFBaX5JAVA13EnegYuD">
+
+                            <div class="input-group">
+                                <textarea name="content" rows="1" class="form-control custom-control jqcomment-textarea"
+                                    placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                <div class="input-group-append">
+                                    <button class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <br>
+                        <div id="obj-comments-4590" class="jqhtml-loader" data-href="/tests/4590/comments/?refid=">
+                            <div class="comment-item media" style="margin-left: 0.0rem;">
+
+                                <span class="comment-avatar">T</span>
+
+                                <div class="comment-body media-body">
+                                    <div class="comment-username">
+                                        <strong>triducc24082006</strong>,
+                                        May 10, 2024
+                                    </div>
+                                    <div class="comment-content prewrap">mình aim 800+ có ai có nhóm cho mình xin vào
+                                        với ạ</div>
+
+                                    <div class="comment-reply-action">
+                                        <a href="#comment-reply-form-83128" data-toggle="collapse"
+                                            aria-expanded="false"><strong>Trả lời</strong></a>
+
+                                        <div class="comment-reply-form collapse" id="comment-reply-form-83128">
+
+                                            <form action="/tests/4590/comment/" method="POST"
+                                                class="mt-2 md-comment-input jqform jqcomment-form"
+                                                data-reload-html="#obj-comments-4590" data-target="#md-comments-box"
+                                                data-submitting="false">
+
+                                                <input name="csrfmiddlewaretoken" type="hidden"
+                                                    value="VqQqTTE6ftUxP0PhqpuKaTbqJ2JcpiteD2rIZsOTCdbSSothmHaqasdUSk7NUdBW">
+
+
+
+                                                <input type="hidden" name="reply_to" value="83128">
+
+
+
+                                                <div class="input-group">
+                                                    <textarea name="content" rows="1"
+                                                        class="form-control custom-control jqcomment-textarea"
+                                                        placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                                    <div class="input-group-append">
+                                                        <button
+                                                            class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="comment-item media" style="margin-left: 0.0rem;">
+                                <span class="comment-avatar">L</span>
+                                <div class="comment-body media-body">
+                                    <div class="comment-username">
+                                        <strong>listeningtest1.5</strong>,
+                                        May 08, 2024
+                                    </div>
+                                    <div class="comment-content prewrap">Có ai rảnh sáng luyện nghe cùng mình không ạ,
+                                        cả đọc thì càng tốt ạ</div>
+                                    <div class="comment-reply-action">
+                                        <a href="#comment-reply-form-82862" data-toggle="collapse"
+                                            aria-expanded="false"><strong>Trả lời</strong></a>
+                                        <div class="comment-reply-form collapse" id="comment-reply-form-82862">
+                                            <form action="/tests/4590/comment/" method="POST"
+                                                class="mt-2 md-comment-input jqform jqcomment-form"
+                                                data-reload-html="#obj-comments-4590" data-target="#md-comments-box"
+                                                data-submitting="false">
+                                                <input name="csrfmiddlewaretoken" type="hidden"
+                                                    value="VqQqTTE6ftUxP0PhqpuKaTbqJ2JcpiteD2rIZsOTCdbSSothmHaqasdUSk7NUdBW">
+                                                <input type="hidden" name="reply_to" value="82862">
+                                                <div class="input-group">
+                                                    <textarea name="content" rows="1"
+                                                        class="form-control custom-control jqcomment-textarea"
+                                                        placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                                    <div class="input-group-append">
+                                                        <button
+                                                            class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="comment-replies">
+
+
+
+                                <div class="comment-item media" style="margin-left: 2.5rem;">
+
+                                    <img class="comment-avatar"
+                                        src="https://res.cloudinary.com/sandodep9/image/upload/w_300/sandodep9_x_15857190704166104763629112240503556118_aucswi"
+                                        alt="tranlamphong.sk">
+
+
+                                    <div class="comment-body media-body">
+                                        <div class="comment-username">
+                                            <strong>tranlamphong.sk</strong>,
+                                            May 08, 2024
+                                        </div>
+                                        <div class="comment-content prewrap">Mình ạ</div>
+
+
+                                        <div class="comment-reply-action">
+                                            <a href="#comment-reply-form-82871" data-toggle="collapse"
+                                                aria-expanded="false"><strong>Trả lời</strong></a>
+
+
+
+                                            <div class="comment-reply-form collapse" id="comment-reply-form-82871">
+
+
+
+
+                                                <form action="/tests/4590/comment/" method="POST"
+                                                    class="mt-2 md-comment-input jqform jqcomment-form"
+                                                    data-reload-html="#obj-comments-4590" data-target="#md-comments-box"
+                                                    data-submitting="false">
+
+                                                    <input name="csrfmiddlewaretoken" type="hidden"
+                                                        value="VqQqTTE6ftUxP0PhqpuKaTbqJ2JcpiteD2rIZsOTCdbSSothmHaqasdUSk7NUdBW">
+
+
+
+                                                    <input type="hidden" name="reply_to" value="82871">
+
+
+
+                                                    <div class="input-group">
+                                                        <textarea name="content" rows="1"
+                                                            class="form-control custom-control jqcomment-textarea"
+                                                            placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                                        <div class="input-group-append">
+                                                            <button
+                                                                class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="comment-replies">
+
+
+
+                                    <div class="comment-item media" style="margin-left: 5.0rem;">
+
+                                        <span class="comment-avatar">L</span>
+
+
+                                        <div class="comment-body media-body">
+                                            <div class="comment-username">
+                                                <strong>listeningtest1.5</strong>,
+                                                May 09, 2024
+                                            </div>
+                                            <div class="comment-content prewrap">Bạn check mail nhé ạ</div>
+
+
+                                            <div class="comment-reply-action">
+                                                <a href="#comment-reply-form-82883" data-toggle="collapse"
+                                                    aria-expanded="false"><strong>Trả lời</strong></a>
+
+
+
+                                                <div class="comment-reply-form collapse" id="comment-reply-form-82883">
+
+
+
+
+                                                    <form action="/tests/4590/comment/" method="POST"
+                                                        class="mt-2 md-comment-input jqform jqcomment-form"
+                                                        data-reload-html="#obj-comments-4590"
+                                                        data-target="#md-comments-box" data-submitting="false">
+
+                                                        <input name="csrfmiddlewaretoken" type="hidden"
+                                                            value="VqQqTTE6ftUxP0PhqpuKaTbqJ2JcpiteD2rIZsOTCdbSSothmHaqasdUSk7NUdBW">
+
+
+
+                                                        <input type="hidden" name="reply_to" value="82883">
+
+
+
+                                                        <div class="input-group">
+                                                            <textarea name="content" rows="1"
+                                                                class="form-control custom-control jqcomment-textarea"
+                                                                placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                                            <div class="input-group-append">
+                                                                <button
+                                                                    class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+
+
+
+
+                                <div class="comment-item media" style="margin-left: 2.5rem;">
+
+                                    <span class="comment-avatar">X</span>
+
+
+                                    <div class="comment-body media-body">
+                                        <div class="comment-username">
+                                            <strong>xuanthanh88508</strong>,
+                                            May 09, 2024
+                                        </div>
+                                        <div class="comment-content prewrap">0358748253 mình cũng muốn join ạ</div>
+
+
+                                        <div class="comment-reply-action">
+                                            <a href="#comment-reply-form-82884" data-toggle="collapse"
+                                                aria-expanded="false"><strong>Trả lời</strong></a>
+
+
+
+                                            <div class="comment-reply-form collapse" id="comment-reply-form-82884">
+
+
+
+
+                                                <form action="/tests/4590/comment/" method="POST"
+                                                    class="mt-2 md-comment-input jqform jqcomment-form"
+                                                    data-reload-html="#obj-comments-4590" data-target="#md-comments-box"
+                                                    data-submitting="false">
+
+                                                    <input name="csrfmiddlewaretoken" type="hidden"
+                                                        value="VqQqTTE6ftUxP0PhqpuKaTbqJ2JcpiteD2rIZsOTCdbSSothmHaqasdUSk7NUdBW">
+
+
+
+                                                    <input type="hidden" name="reply_to" value="82884">
+
+
+
+                                                    <div class="input-group">
+                                                        <textarea name="content" rows="1"
+                                                            class="form-control custom-control jqcomment-textarea"
+                                                            placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                                        <div class="input-group-append">
+                                                            <button
+                                                                class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="comment-replies">
+
+
+
+                                    <div class="comment-item media" style="margin-left: 5.0rem;">
+
+                                        <span class="comment-avatar">L</span>
+
+
+                                        <div class="comment-body media-body">
+                                            <div class="comment-username">
+                                                <strong>listeningtest1.5</strong>,
+                                                May 09, 2024
+                                            </div>
+                                            <div class="comment-content prewrap">Bạn check mail nhé ạ</div>
+
+
+                                            <div class="comment-reply-action">
+                                                <a href="#comment-reply-form-82886" data-toggle="collapse"
+                                                    aria-expanded="false"><strong>Trả lời</strong></a>
+
+
+
+                                                <div class="comment-reply-form collapse" id="comment-reply-form-82886">
+
+
+
+
+                                                    <form action="/tests/4590/comment/" method="POST"
+                                                        class="mt-2 md-comment-input jqform jqcomment-form"
+                                                        data-reload-html="#obj-comments-4590"
+                                                        data-target="#md-comments-box" data-submitting="false">
+
+                                                        <input name="csrfmiddlewaretoken" type="hidden"
+                                                            value="VqQqTTE6ftUxP0PhqpuKaTbqJ2JcpiteD2rIZsOTCdbSSothmHaqasdUSk7NUdBW">
+
+
+
+                                                        <input type="hidden" name="reply_to" value="82886">
+
+
+
+                                                        <div class="input-group">
+                                                            <textarea name="content" rows="1"
+                                                                class="form-control custom-control jqcomment-textarea"
+                                                                placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                                            <div class="input-group-append">
+                                                                <button
+                                                                    class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+
+
+
+
+                                <div class="comment-item media" style="margin-left: 2.5rem;">
+
+                                    <span class="comment-avatar">N</span>
+
+
+                                    <div class="comment-body media-body">
+                                        <div class="comment-username">
+                                            <strong>nguyenthiphuong2415</strong>,
+                                            May 09, 2024
+                                        </div>
+                                        <div class="comment-content prewrap">mình ạ</div>
+
+
+                                        <div class="comment-reply-action">
+                                            <a href="#comment-reply-form-82918" data-toggle="collapse"
+                                                aria-expanded="false"><strong>Trả lời</strong></a>
+
+
+
+                                            <div class="comment-reply-form collapse" id="comment-reply-form-82918">
+
+
+
+
+                                                <form action="/tests/4590/comment/" method="POST"
+                                                    class="mt-2 md-comment-input jqform jqcomment-form"
+                                                    data-reload-html="#obj-comments-4590" data-target="#md-comments-box"
+                                                    data-submitting="false">
+
+                                                    <input name="csrfmiddlewaretoken" type="hidden"
+                                                        value="VqQqTTE6ftUxP0PhqpuKaTbqJ2JcpiteD2rIZsOTCdbSSothmHaqasdUSk7NUdBW">
+
+
+
+                                                    <input type="hidden" name="reply_to" value="82918">
+
+
+
+                                                    <div class="input-group">
+                                                        <textarea name="content" rows="1"
+                                                            class="form-control custom-control jqcomment-textarea"
+                                                            placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                                        <div class="input-group-append">
+                                                            <button
+                                                                class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="comment-item media" style="margin-left: 2.5rem;">
+
+                                    <span class="comment-avatar">A</span>
+
+
+                                    <div class="comment-body media-body">
+                                        <div class="comment-username">
+                                            <strong>az1442002az012345</strong>,
+                                            May 09, 2024
+                                        </div>
+                                        <div class="comment-content prewrap">mk có dc k ạ</div>
+
+
+                                        <div class="comment-reply-action">
+                                            <a href="#comment-reply-form-82951" data-toggle="collapse"
+                                                aria-expanded="false"><strong>Trả lời</strong></a>
+
+
+
+                                            <div class="comment-reply-form collapse" id="comment-reply-form-82951">
+
+
+
+
+                                                <form action="/tests/4590/comment/" method="POST"
+                                                    class="mt-2 md-comment-input jqform jqcomment-form"
+                                                    data-reload-html="#obj-comments-4590" data-target="#md-comments-box"
+                                                    data-submitting="false">
+
+                                                    <input name="csrfmiddlewaretoken" type="hidden"
+                                                        value="VqQqTTE6ftUxP0PhqpuKaTbqJ2JcpiteD2rIZsOTCdbSSothmHaqasdUSk7NUdBW">
+
+
+
+                                                    <input type="hidden" name="reply_to" value="82951">
+
+
+
+                                                    <div class="input-group">
+                                                        <textarea name="content" rows="1"
+                                                            class="form-control custom-control jqcomment-textarea"
+                                                            placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                                        <div class="input-group-append">
+                                                            <button
+                                                                class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="comment-item media" style="margin-left: 2.5rem;">
+
+                                    <span class="comment-avatar">N</span>
+
+
+                                    <div class="comment-body media-body">
+                                        <div class="comment-username">
+                                            <strong>ngochientran1118</strong>,
+                                            May 10, 2024
+                                        </div>
+                                        <div class="comment-content prewrap">Gửi mih vs ạ zalo mình 0383639049</div>
+
+
+                                        <div class="comment-reply-action">
+                                            <a href="#comment-reply-form-83126" data-toggle="collapse"
+                                                aria-expanded="false"><strong>Trả lời</strong></a>
+
+
+
+                                            <div class="comment-reply-form collapse" id="comment-reply-form-83126">
+
+
+
+
+                                                <form action="/tests/4590/comment/" method="POST"
+                                                    class="mt-2 md-comment-input jqform jqcomment-form"
+                                                    data-reload-html="#obj-comments-4590" data-target="#md-comments-box"
+                                                    data-submitting="false">
+
+                                                    <input name="csrfmiddlewaretoken" type="hidden"
+                                                        value="VqQqTTE6ftUxP0PhqpuKaTbqJ2JcpiteD2rIZsOTCdbSSothmHaqasdUSk7NUdBW">
+
+
+
+                                                    <input type="hidden" name="reply_to" value="83126">
+
+
+
+                                                    <div class="input-group">
+                                                        <textarea name="content" rows="1"
+                                                            class="form-control custom-control jqcomment-textarea"
+                                                            placeholder="Chia sẻ cảm nghĩ của bạn ..."></textarea>
+                                                        <div class="input-group-append">
+                                                            <button
+                                                                class="input-group-addon btn btn-primary jqcomment-submit">Gửi</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div data-href="/tests/4590/comments/?page=2"
+                                class="mt-3 jq-showmore btn btn-sm btn-outline-primary btn-block">Xem thêm</div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-12 col-md-3">
+                    <!-- <div class="user-target-info-box">
+                        <div class="user-target-user">
+                            <div>
+                                <span class="account-profile-img md">
+                                    <img src="/static/img/user_icon.png" alt="an2572003">
+                                </span>
+                            </div>
+                            <div class="text-center">
+                                an2572003
+                            </div>
+                        </div>
+                        <div class="divider sm"></div>
+                        <div class="user-target-info">
+                            <p class="user-target-text-sm">
+                                <span class="far fa-exclamation-circle"></span>
+                                <i>Bạn chưa tạo mục tiêu cho quá trình luyện thi của mình.
+                                    <a data-toggle="modal" data-target="#site-modal-md"
+                                        onclick="window.load_jqhtml(this, '#site-modal-md-content')" href=""
+                                        data-href="/targetscore/add/1/?view=clean">Tạo ngay</a>.
+                                </i>
+                            </p>
+                            <div class="mt-3">
+                                <a class="btn btn-sm btn-block btn-round btn-sky" href="/tests/analytics/">
+                                    <span class="far fa-analytics mr-1"></span>
+                                    Thống kê kết quả
+                                </a>
+                            </div>
+                        </div>
+                    </div> -->
+                    <br>
+                    <div class="fb-group mb-3 fb_iframe_widget" data-href="https://facebook.com/groups/study4.ielts"
+                        data-show-social-context="true" data-show-metadata="false" fb-xfbml-state="rendered"
+                        fb-iframe-plugin-query="app_id=170677886335455&amp;container_width=269&amp;href=https%3A%2F%2Ffacebook.com%2Fgroups%2Fstudy4.ielts&amp;locale=en_US&amp;sdk=joey&amp;show_metadata=false&amp;show_social_context=true">
+                        <span style="vertical-align: bottom; width: 269px; height: 250px;"><iframe
+                                name="f2685e3205e3e0717" width="1000px" height="1000px"
+                                data-testid="fb:group Facebook Social Plugin" title="fb:group Facebook Social Plugin"
+                                frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no"
+                                allow="encrypted-media"
+                                src="https://www.facebook.com/v18.0/plugins/group.php?app_id=170677886335455&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Dfa5baf254ca3b6551%26domain%3Dstudy4.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fstudy4.com%252Ffbfe16f9a26bdb4a0%26relation%3Dparent.parent&amp;container_width=269&amp;href=https%3A%2F%2Ffacebook.com%2Fgroups%2Fstudy4.ielts&amp;locale=en_US&amp;sdk=joey&amp;show_metadata=false&amp;show_social_context=true"
+                                style="border: none; visibility: visible; width: 269px; height: 250px;"
+                                class=""></iframe></span></div>
+                    <div class="fb-group mb-3 fb_iframe_widget"
+                        data-href="https://www.facebook.com/groups/dilam.hoctienganh" data-show-social-context="true"
+                        data-show-metadata="false" fb-xfbml-state="rendered"
+                        fb-iframe-plugin-query="app_id=170677886335455&amp;container_width=269&amp;href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fdilam.hoctienganh&amp;locale=en_US&amp;sdk=joey&amp;show_metadata=false&amp;show_social_context=true">
+                        <span style="vertical-align: bottom; width: 269px; height: 250px;"><iframe
+                                name="f7e33bb24add618fe" width="1000px" height="1000px"
+                                data-testid="fb:group Facebook Social Plugin" title="fb:group Facebook Social Plugin"
+                                frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no"
+                                allow="encrypted-media"
+                                src="https://www.facebook.com/v18.0/plugins/group.php?app_id=170677886335455&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Dfa311707da6165ccb%26domain%3Dstudy4.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fstudy4.com%252Ffbfe16f9a26bdb4a0%26relation%3Dparent.parent&amp;container_width=269&amp;href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fdilam.hoctienganh&amp;locale=en_US&amp;sdk=joey&amp;show_metadata=false&amp;show_social_context=true"
+                                style="border: none; visibility: visible; width: 269px; height: 250px;"
+                                class=""></iframe></span></div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="exam-top-modal" tabindex="-1" aria-labelledby="exam-top-modal" aria-hidden="true"
+            data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <div class="modal-body" id="exam-top-modal-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer-home></app-footer-home>

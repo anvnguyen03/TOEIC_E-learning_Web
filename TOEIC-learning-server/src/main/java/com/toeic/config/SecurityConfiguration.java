@@ -26,7 +26,7 @@ public class SecurityConfiguration {
 	
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	private final UserService userService;
-	
+	private String[] testsUrl = {"/api/v1/test-categories/", "/api/v1/tests/**", "/api/v1/questions/**"};
 	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,12 +34,13 @@ public class SecurityConfiguration {
 		http
 			.csrf(csrf -> csrf.disable())
 			.authorizeHttpRequests(request -> request
-												.requestMatchers("/api/v1/auth/**")
-												.permitAll()
+												.requestMatchers(testsUrl).permitAll()
+												.requestMatchers("/images/**").permitAll()
+				                                .requestMatchers("/audios/**").permitAll()
+												.requestMatchers("/api/v1/auth/**").permitAll()
 												.requestMatchers("/api/v1/admin").hasAnyAuthority(Role.ADMIN.name())
 												.requestMatchers("/api/v1/user/**").hasAnyAuthority(Role.USER.name())
 												.requestMatchers("/api/v1/login/**").anonymous()
-												.requestMatchers("/api/v1/test/get-all").hasAuthority(Role.USER.name())
 												.anyRequest().authenticated())
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authenticationProvider(AuthenticationProvider())

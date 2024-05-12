@@ -24,12 +24,9 @@ export class NavbarHomeComponent implements OnInit {
   dropdownMenu!: ElementRef;
 
   ngOnInit(): void {
-    // hàm thực hiện tác vụ lặp lại sau 1 khoảng thời gian 1000ms = 1s
-    setInterval(() => {
       if (this.authService.getToken()) {
         this.checkLogin()
       }
-    }, 250)
   }
 
   checkLogin() {

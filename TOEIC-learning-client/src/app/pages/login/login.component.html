@@ -1,3 +1,5 @@
+<app-navbar-home></app-navbar-home>
+
 <div class="site-content-wrapper">
     <div class="content-wrapper">
         <div>
@@ -5,7 +7,7 @@
                 <div class="auth-box-wrapper contentblock">
                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login100-form validate-form">
                         <span class="login100-form-title">
-                            Member Login - {{loginForm.status}}
+                            Member Login
                         </span>
                         <div *ngIf="message" class="alert alert-danger" role="alert">
                             {{message}}
@@ -52,3 +54,5 @@
         </div>
     </div>
 </div>
+
+<app-footer-home></app-footer-home>
