@@ -24,4 +24,5 @@ export const routes: Routes = [
     { path: 'my-profile', component: ProfileComponent}, // Define the route for the profile page
     {path: 'my-fogot-password/:email/:code', component: FogotPasswordComponent}, // sửa dùng chữ r đi
     {path: 'my-fogot-password',component: FogotPasswordComponent},  // sửa dùng chữ r đi
+    {path: '', redirectTo: "/home", pathMatch: "full"},
 ];
