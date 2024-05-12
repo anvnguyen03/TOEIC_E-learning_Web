@@ -97,4 +97,26 @@ public class TestServiceImpl implements TestService{
 			return new ResponseEntity<>("Không tìm thấy đề thi!", HttpStatus.NOT_FOUND);
 		}
 	}
+	@Override
+	public ResponseEntity<?> getAllNoPagin() {
+		List<Test> tests = testRepository.findAll();
+		return new ResponseEntity<>(tests, HttpStatus.OK);
+	}
+	@Override
+	public ResponseEntity<?> changeStatus(long id) {
+		Optional<Test> existedTest = testRepository.findById(id);
+		if (existedTest.isPresent()) {
+			Test test = existedTest.get();
+			if (test.getStatus() == TestStatus.ENABLE) {
+				test.setStatus(TestStatus.DELETED);
+			} else if (test.getStatus() == TestStatus.DELETED){
+				test.setStatus(TestStatus.ENABLE);
+			}
+			testRepository.save(test);
+			return new ResponseEntity<>(test, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("Không tìm thấy đề thi!", HttpStatus.NOT_FOUND);
+		}
+		
+	}
 }

@@ -1,0 +1,78 @@
+<!-- Page Heading -->
+<h1 class="m-0 font-weight-bold text-primary" *ngIf="test">{{test.testTitle}} </h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <button mat-button type="button" class="btn btn-success"> + Import Excel</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <!-- <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"> -->
+                <table datatable *ngIf="questions.length > 0" [dtOptions]="dtOptions"
+                    class="row-border hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">No.</th>
+                            <th style="width: 5%;">Content</th>
+                            <th style="width: 5%;">Option A</th>
+                            <th style="width: 5%;">Option B</th>
+                            <th style="width: 5%;">Option C</th>
+                            <th style="width: 5%;">Option D</th>
+                            <th style="width: 5%;">Correct Option</th>
+                            <th style="width: 5%;">Image</th>
+                            <th style="width: 5%;">Audio</th>
+                            <th style="width: 35%;">Script</th>
+                            <th style="width: 5%;">Explaintation</th>
+                            <th style="width: 5%;">Passage</th>
+                            <th style="width: 5%;">Part</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let question of questions">
+                            <td>
+                                <span>{{question.orderNumber}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.content}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.optionA}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.optionB}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.optionC}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.optionD}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.correctOption}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.image}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.audio}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.script}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.explaintation}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.questionPassage}}</span>
+                            </td>
+                            <td>
+                                <span>{{question.part}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>

@@ -35,4 +35,9 @@ public class AdminTestController {
 	public ResponseEntity<?> deleteTest(@RequestBody TestDto testDto) {
 		return testService.deleteTest(testDto);
 	}
+	
+	@PostMapping("/test/change-status")
+	public ResponseEntity<?> changeStatus(@RequestBody long id) {
+		return testService.changeStatus(id);
+	}
 }

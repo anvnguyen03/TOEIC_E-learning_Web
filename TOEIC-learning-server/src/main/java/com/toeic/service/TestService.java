@@ -12,4 +12,6 @@ public interface TestService {
 	ResponseEntity<?> createTest(TestDto testDto);
 	ResponseEntity<?> updateTest(TestDto testDto);
 	ResponseEntity<?> deleteTest(TestDto testDto);
+	ResponseEntity<?> getAllNoPagin();
+	ResponseEntity<?> changeStatus(long id);
 }

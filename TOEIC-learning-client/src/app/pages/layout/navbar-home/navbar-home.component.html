@@ -13,7 +13,7 @@
         <div class="d-lg-block navbar-collapse justify-content-end collapse" id="navbar-collapse" style>
           <ul class="nav">
             <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
-              <a class="nav-link" href="/my-account/courses/">Quản lý</a>
+              <a class="nav-link" routerLink="/admindashboard">Quản lý</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/tests" routerLinkActive="active" ariaCurrentWhenActive="page">Đề thi online</a>

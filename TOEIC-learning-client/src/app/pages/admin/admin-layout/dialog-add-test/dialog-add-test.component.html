@@ -1,0 +1,28 @@
+<div class="form">
+    <h2 mat-dialog-title>Add new test</h2>
+    <form [formGroup]="addTestForm" (ngSubmit)="addTest()" class="example-form">
+        <!-- <mat-form-field class="example-full-width">
+            <mat-label>Company (disabled)</mat-label>
+            <input matInput disabled value="Google">
+        </mat-form-field> -->
+
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="testTitle">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="categoryId">
+                @for (category of testCategories; track category.id) {
+                <mat-option value="{{category.id}}">{{category.cateName}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button type="submit" [disabled]="!addTestForm.valid" mat-button [mat-dialog-close]="true" cdkFocusInitial>Add</button>
+        </mat-dialog-actions>
+    </form>
+</div>

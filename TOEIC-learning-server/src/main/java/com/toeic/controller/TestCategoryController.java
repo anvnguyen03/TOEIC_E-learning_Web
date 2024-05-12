@@ -19,7 +19,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TestCategoryController {
 	private final TestCategoryService testCategoryService;
-	@GetMapping()
+	
+	@GetMapping("")
 	public ResponseEntity<List<TestCategory>> getAll() {
 		return ResponseEntity.ok(testCategoryService.getAll());
 	}
