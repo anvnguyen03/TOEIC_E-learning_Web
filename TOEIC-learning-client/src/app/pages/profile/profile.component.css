@@ -1,0 +1,8 @@
+.center {
+  margin: 0 auto;
+  width: fit-content; /* Optional: Set a maximum width if needed */
+}
+
+.notValid {
+  color: red;
+}

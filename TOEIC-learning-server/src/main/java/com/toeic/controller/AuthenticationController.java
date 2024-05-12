@@ -1,7 +1,12 @@
 package com.toeic.controller;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +18,7 @@ import com.toeic.dto.SignUpRequest;
 import com.toeic.dto.ValidateTokenRequest;
 import com.toeic.entity.User;
 import com.toeic.service.AuthenticationService;
+import com.toeic.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,4 +43,7 @@ public class AuthenticationController {
 	public ResponseEntity<Boolean> validateToken(@RequestBody ValidateTokenRequest token) {
 		return ResponseEntity.ok(authenticationService.validateToken(token));
 	}
+	
+	
+	
 }

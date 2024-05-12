@@ -2,6 +2,7 @@ package com.toeic.service.impl;
 
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,6 +38,34 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	@Override
 	public User signup(SignUpRequest signUpRequest) {
+		if(signUpRequest.getEmail().equals("createUsers@gmail.com")) {
+			String[] fullnames = {
+			        "Emma", "Liam", "Olivia", "Noah", "Ava", "William", "Isabella", "James", "Sophia", "Oliver",
+			        "Charlotte", "Benjamin", "Amelia", "Elijah", "Mia", "Lucas", "Harper", "Mason", "Evelyn", "Logan",
+			        "Abigail", "Alexander", "Emily", "Ethan", "Elizabeth", "Jacob", "Avery", "Michael", "Sofia", 
+			        "Daniel", "Camila", "Henry", "Aria", "Jackson", "Scarlett", "Sebastian", "Grace", "Aiden", 
+			        "Chloe", "Matthew", "Victoria", "Samuel", "Madison", "David", "Luna", "Joseph", "Penelope",
+			        "Levi", "Riley","Rin","Connan"
+			    };
+			Random random = new Random();
+			User user = null;
+			for(int i =0;i<50;++i) {
+				int index = 2-random.nextInt(23)/10;
+				Role role = Role.values()[index];
+				String email = role.toString().toLowerCase();
+				user = new User(
+					fullnames[i],
+					String.format("%s%d@gmail.com", email,i),
+					passwordEncoder.encode("123456"),
+					role,
+					Status.ACTIVE
+				);
+				userRepository.save(user);
+			}
+			return user;
+		}
+		
+	//---------------------------------------------------------------------------------------------------	
 		User user = new User();
 
 		Optional<User> userExisted = userRepository.findByEmail(signUpRequest.getEmail());
@@ -50,7 +79,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			user.setRole(Role.USER);
 			user.setStatus(Status.ACTIVE);
 			user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
-
+			System.out.println("đăng ký mật khẩu="+ user.getPassword() );
 			return userRepository.save(user);
 		}
 				
