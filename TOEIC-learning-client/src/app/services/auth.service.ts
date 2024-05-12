@@ -1,17 +1,25 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { User } from '../model/user';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  
+  
 
-  private baseURL = "http://localhost:8080/api/v1/auth"
-
+  private baseURL = "http://localhost:8080/api/v1/auth";
+ 
+  private loginURL = "http://localhost:8080/api/v1/login";
   constructor(private httpClient: HttpClient) { }
 
   private token?: string | null
-
+  getHeader():HttpHeaders{
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return headers;
+  }
   postLogin(signInRequest: any): Observable<any> {
     return this.httpClient.post<any>(`${this.baseURL}/signin`, signInRequest)
   }
@@ -51,5 +59,19 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token')
+  }
+  
+  sendFogotPasswordRequest(email: string):  Observable<any>{
+    
+    const body = { email: email, code:Math.floor(Date.now() * 1000).toString(36)};
+    return this.httpClient.post(`${this.loginURL}/foget-password`,
+    body
+    )
+  }
+  resetPassword(email: string, password: string):  Observable<any> {
+    const body = { email: email, password:password};
+    return this.httpClient.put(`${this.loginURL}/reset-password`,
+    body
+    );
   }
 }

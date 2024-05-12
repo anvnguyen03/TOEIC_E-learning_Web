@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 	private final UserRepository userRepository;
-
+	
 	@Override
 	public UserDetailsService userDetailsService() {
 		return new UserDetailsService() {
@@ -54,7 +54,17 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		userRepository.deleteByEmailAndStatus(email, status);
 	}
-	
-	
-	
+	public User findByUserFullname(String fullname) {
+		return userRepository.findByFullname(fullname);
+	}
+
+	@Override
+	public User findByUserEmail(String email) {
+		return userRepository.findByEmail(email).orElse(null);
+	}
+
+	@Override
+	public User update(User currentUser) {
+		return userRepository.save(currentUser);
+	}
 }

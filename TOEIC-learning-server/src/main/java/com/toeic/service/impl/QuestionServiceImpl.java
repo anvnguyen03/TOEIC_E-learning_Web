@@ -1,6 +1,10 @@
 package com.toeic.service.impl;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -90,4 +94,65 @@ public class QuestionServiceImpl implements QuestionService{
         }
         return ""; // Trả về giá trị rỗng nếu ô là null hoặc không có giá trị
     }
+
+	@Override
+	public ResponseEntity<?> uploadQuestionsImages(List<MultipartFile> files, Long testId) {
+		try {
+            // Đường dẫn thư mục tĩnh cho ảnh
+        	Test test = testRepository.findById(testId).orElseThrow();
+            String imagePath = test.getTestTitle().toString();
+            Path uploadImagePath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "static", "images", imagePath);
+
+            if (!Files.exists(uploadImagePath)) {
+                Files.createDirectories(uploadImagePath);
+            }
+            List<String> imageNames = new ArrayList<>();
+
+            for (MultipartFile file : files) {
+                String imageName = file.getOriginalFilename();
+                Path imageFile = uploadImagePath.resolve(imageName);
+
+                try (OutputStream osImage = Files.newOutputStream(imageFile)) {
+                    osImage.write(file.getBytes());
+                }
+                imageNames.add(imageName);
+            }
+
+            return ResponseEntity.ok("Ảnh upload thành công: " + String.join(", ", imageNames));
+        } catch (Exception e) {
+            return new ResponseEntity<>("Lỗi khi upload ảnh: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+	}
+
+	@Override
+	public ResponseEntity<?> uploadQuestionsAudio(List<MultipartFile> files, Long testId) {
+		try {
+            // Đường dẫn thư mục tĩnh cho âm thanh
+        	Test test = testRepository.findById(testId).orElseThrow();
+            String audioPath = test.getTestTitle().toString();
+            Path uploadAudioPath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "static", "audios", audioPath);
+
+            if (!Files.exists(uploadAudioPath)) {
+                Files.createDirectories(uploadAudioPath);
+            }
+
+            List<String> audioNames = new ArrayList<>();
+
+            for (MultipartFile file : files) {
+                String audioName = file.getOriginalFilename();
+                Path audioFile = uploadAudioPath.resolve(audioName);
+
+                try (OutputStream osAudio = Files.newOutputStream(audioFile)) {
+                    osAudio.write(file.getBytes());
+                }
+                audioNames.add(audioName);
+            }
+
+            return ResponseEntity.ok("Upload audio thành công: " + String.join(", ", audioNames));
+        } catch (Exception e) {
+            return new ResponseEntity<>("Upload audio thất bại: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+	}
+	
+	
 }

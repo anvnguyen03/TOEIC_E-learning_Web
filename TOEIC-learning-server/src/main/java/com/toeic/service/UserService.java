@@ -17,4 +17,10 @@ public interface UserService {
 	Optional<User> findByUsername(String username);
 
 	void deleteByEmailAndStatus(String email, Status status);
+
+	User findByUserFullname(String username);
+
+	User findByUserEmail(String email);
+
+	User update(User currentUser);
 }
