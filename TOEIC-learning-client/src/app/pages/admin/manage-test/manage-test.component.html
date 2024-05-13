@@ -35,7 +35,7 @@
                             </td>
                             <td>
                                 <a (click)="changeStatus(test.id)"><span *ngIf="test.status == 'ENABLE'" class="badge bg-success me-1">{{test.status}}</span></a>
-                                <a (click)="changeStatus(test.id)"><span *ngIf="test.status == 'DELETED'" class="badge bg-dark me-1">{{test.status}}</span></a>
+                                <a (click)="changeStatus(test.id)"><span *ngIf="test.status == 'DISABLE'" class="badge bg-dark me-1">{{test.status}}</span></a>
                             </td>
                             <td>
                                 <span>{{test.createdAt | date:'medium'}}</span>

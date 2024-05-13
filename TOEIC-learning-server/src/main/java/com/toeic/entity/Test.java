@@ -45,7 +45,7 @@ public class Test{
 	@Column(name = "updated_at")
 	private Date updatedAt;
 	
-	public Test(String testTitle, int status, TestCategory testCategory) {
+	public Test(String testTitle, TestCategory testCategory) {
 		this.testTitle = testTitle;
 		this.status = TestStatus.ENABLE;
 		this.testCategory = testCategory;

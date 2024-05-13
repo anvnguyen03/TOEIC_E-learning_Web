@@ -61,7 +61,7 @@ public class TestServiceImpl implements TestService{
 			return new ResponseEntity<>("Đề thi đã tồn tại!", HttpStatus.BAD_REQUEST);
 		} 
 		TestCategory testCate = testCateoryRepository.findById(testDto.getCategoryId()).orElseThrow();
-		Test test = new Test(testDto.getTestTitle(), 1, testCate);
+		Test test = new Test(testDto.getTestTitle(), testCate);
 		testRepository.save(test);
 		return new ResponseEntity<>(test, HttpStatus.CREATED);
 	}
@@ -89,7 +89,7 @@ public class TestServiceImpl implements TestService{
 		Optional<Test> existedTest = testRepository.findById(testDto.getId());
 		if (existedTest.isPresent()) {
 			Test updatingTest = existedTest.get();
-			updatingTest.setStatus(TestStatus.DELETED);
+			updatingTest.setStatus(TestStatus.DISABLE);
 			testRepository.save(updatingTest);
 			
 			return new ResponseEntity<>(updatingTest, HttpStatus.OK);
@@ -108,8 +108,8 @@ public class TestServiceImpl implements TestService{
 		if (existedTest.isPresent()) {
 			Test test = existedTest.get();
 			if (test.getStatus() == TestStatus.ENABLE) {
-				test.setStatus(TestStatus.DELETED);
-			} else if (test.getStatus() == TestStatus.DELETED){
+				test.setStatus(TestStatus.DISABLE);
+			} else if (test.getStatus() == TestStatus.DISABLE){
 				test.setStatus(TestStatus.ENABLE);
 			}
 			testRepository.save(test);

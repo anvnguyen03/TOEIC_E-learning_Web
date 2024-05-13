@@ -16,18 +16,19 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { AdminLayoutComponent } from './pages/admin/admin-layout/admin-layout.component';
 import { ManageTestComponent } from './pages/admin/manage-test/manage-test.component';
 import { ManageQuestionComponent } from './pages/admin/manage-question/manage-question.component';
+import { TestByCategoryComponent } from './pages/test-by-category/test-by-category.component';
 
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'tests', component: TestsComponent},
+    {path: 'tests/:catename', component: TestByCategoryComponent},
     {path: 'tests/:id/:title', component: TestDetailsComponent},
     {path: 'tests/:id/:title/start', component: DotestComponent, canActivate: [authGuard]},
     {path: 'tests/:id/results/:resultid', component: TestResultComponent, canActivate: [authGuard]},
     {path: 'login', component: LoginComponent, canActivate: [loggedInGuard]},
     {path: 'logout', component: LogoutComponent},
-    {path: 'register', component: RegisterComponent, canActivate: [loggedInGuard]},
-
+    {path: 'register', component: RegisterComponent},
     { path: 'my-profile', component: ProfileComponent}, // Define the route for the profile page
     {path: 'my-fogot-password/:email/:code', component: FogotPasswordComponent}, // sửa dùng chữ r đi
     {path: 'my-fogot-password',component: FogotPasswordComponent},  // sửa dùng chữ r đi
