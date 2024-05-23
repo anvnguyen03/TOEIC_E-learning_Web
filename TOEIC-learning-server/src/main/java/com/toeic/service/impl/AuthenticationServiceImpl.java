@@ -109,6 +109,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 			jwtAuthenticationResponse.setToken(jwt);
 			jwtAuthenticationResponse.setRefreshToken(refreshToken);
+			jwtAuthenticationResponse.setFullname(user.getFullname());
 		} else {
 			jwtAuthenticationResponse.setError("Invalid Email or password");
 		}

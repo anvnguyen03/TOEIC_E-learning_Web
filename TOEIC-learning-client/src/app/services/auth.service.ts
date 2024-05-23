@@ -45,7 +45,7 @@ export class AuthService {
     }
 
     const payload = JSON.parse(atob(this.token.split('.')[1]))
-    return payload.sub.split('@')[0]
+    return payload.sub
   }
 
   setToken(token: string) {
@@ -57,8 +57,23 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
+  setFullname(fullname: string) {
+    localStorage.setItem('fullname', fullname)
+  }
+
+  getFullname(): any {
+    return localStorage.getItem('fullname') || null
+  }
+
   logout() {
     localStorage.removeItem('token')
+  }
+
+  isLoggedIn(): boolean {
+    if (this.getToken()) {
+      return true 
+    }
+    return false
   }
   
   sendFogotPasswordRequest(email: string):  Observable<any>{

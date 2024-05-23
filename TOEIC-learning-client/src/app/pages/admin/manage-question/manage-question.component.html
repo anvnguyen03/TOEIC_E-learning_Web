@@ -3,9 +3,17 @@
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
+
+    
     <div class="card-header py-3">
-        <button mat-button (click)="openDialog()" type="button" class="btn btn-success"> + Import Excel</button>
+        <button mat-button [class.disabled]="questions.length > 0" (click)="openDialog()" type="button" class="btn btn-success"> + Import Excel</button>
     </div>
+    
+    
+    <div class="card-header py-3">
+        <button mat-button [class.disabled]="questions.length == 0" type="button" class="btn btn-danger"> Delete all</button>
+    </div>
+    
     <div class="card-body">
         <div class="table-responsive">
             <!-- <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"> -->

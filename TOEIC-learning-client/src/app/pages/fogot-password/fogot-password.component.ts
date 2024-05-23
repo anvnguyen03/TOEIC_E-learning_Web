@@ -11,33 +11,41 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './fogot-password.component.css'
 })
 export class FogotPasswordComponent {
+
   isEmailExist: boolean = true;
   isSendedRequest: boolean = false;
   fogotPasswordForm!: FormGroup;
-  email:string = "example@haha.com";
-  constructor(private authService: AuthService, private formBuilder: FormBuilder,private activeRoute: ActivatedRoute,private router: Router) { }
-  ngOnInit(): void {
-    
-  const email = this.activeRoute.snapshot.paramMap.get('email');
-  const code = this.activeRoute.snapshot.paramMap.get('code');
+  email: string = '';
 
-  if (email && code) {
-    this.email = email;
-    this.isEmailExist = true;
-    this.isSendedRequest = true;
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private activeRoute: ActivatedRoute,
+    private router: Router) { }
+
+  ngOnInit(): void {
+
+    const email = this.activeRoute.snapshot.paramMap.get('email');
+    const code = this.activeRoute.snapshot.paramMap.get('code');
+
+    if (email && code) {
+      this.email = email;
+      this.isEmailExist = true;
+      this.isSendedRequest = true;
+    }
+    this.initForm();
   }
-  this.initForm();
-  }
+
   initForm() {
     this.fogotPasswordForm = this.formBuilder.group({
-      email: [{ value: this.email ,disabled: this.isSendedRequest},
+      email: [{ value: null, disabled: this.isSendedRequest },
       [
         Validators.required,
         Validators.email,
         this.validateEmail
       ]
       ],
-      newPassword: [{ value: "" },
+      newPassword: [{ value: null },
       [
         Validators.required,
         Validators.maxLength(30),
@@ -45,7 +53,7 @@ export class FogotPasswordComponent {
         this.validatePassword
       ]
       ],
-      confirmNewpassword: [{ value: "" },
+      confirmNewpassword: [{ value: null },
       [
         Validators.required,
         Validators.maxLength(30),
@@ -55,6 +63,7 @@ export class FogotPasswordComponent {
       ]
     });
   }
+
   validateEmail(control: FormControl) {
     const email: string = control.value as string;
     if (!email) {
@@ -65,6 +74,7 @@ export class FogotPasswordComponent {
     }
     return null;
   }
+
   validatePassword(control: FormControl) {
     const name = control.value;
     if (!/^[a-zA-Z0-9]+$/.test(name)) {
@@ -85,11 +95,12 @@ export class FogotPasswordComponent {
       }
     });
   }
+
   changePassword() {
     const password: string = this.fogotPasswordForm.get("confirmNewpassword")?.value;
-    this.authService.resetPassword(this.email,password).subscribe({
-      next: (isSuccessful:boolean) => {
-        if(isSuccessful){
+    this.authService.resetPassword(this.email, password).subscribe({
+      next: (isSuccessful: boolean) => {
+        if (isSuccessful) {
           this.router.navigate(['/home']);
         }
       },

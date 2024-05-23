@@ -17,29 +17,42 @@ import { AdminLayoutComponent } from './pages/admin/admin-layout/admin-layout.co
 import { ManageTestComponent } from './pages/admin/manage-test/manage-test.component';
 import { ManageQuestionComponent } from './pages/admin/manage-question/manage-question.component';
 import { TestByCategoryComponent } from './pages/test-by-category/test-by-category.component';
+import { UserLayoutComponent } from './pages/user-layout/user-layout.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { MyAccountSettingsComponent } from './pages/my-account-settings/my-account-settings.component';
 
 
 export const routes: Routes = [
-    {path: 'home', component: HomeComponent},
-    {path: 'tests', component: TestsComponent},
-    {path: 'tests/:catename', component: TestByCategoryComponent},
-    {path: 'tests/:id/:title', component: TestDetailsComponent},
-    {path: 'tests/:id/:title/start', component: DotestComponent, canActivate: [authGuard]},
-    {path: 'tests/:id/results/:resultid', component: TestResultComponent, canActivate: [authGuard]},
-    {path: 'login', component: LoginComponent, canActivate: [loggedInGuard]},
-    {path: 'logout', component: LogoutComponent},
-    {path: 'register', component: RegisterComponent},
-    { path: 'my-profile', component: ProfileComponent}, // Define the route for the profile page
-    {path: 'my-fogot-password/:email/:code', component: FogotPasswordComponent}, // sửa dùng chữ r đi
-    {path: 'my-fogot-password',component: FogotPasswordComponent},  // sửa dùng chữ r đi
 
-    {path: 'admindashboard', component: AdminLayoutComponent, canActivate: [authGuard],
+    {   // user routes
+        path: '', component: UserLayoutComponent,
         children: [
-            {path: '', redirectTo: 'tests', pathMatch: 'full'},
-            {path: 'tests', component: ManageTestComponent, canActivate: [authGuard]},
-            {path: 'tests/:id/questions', component: ManageQuestionComponent, canActivate: [authGuard]}
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: HomeComponent },
+            { path: 'tests', component: TestsComponent },
+            { path: 'tests/:catename', component: TestByCategoryComponent },
+            { path: 'tests/:id/:title', component: TestDetailsComponent },
+            { path: 'tests/:id/:title/start', component: DotestComponent, canActivate: [authGuard] },
+            { path: 'tests/:id/results/:resultid', component: TestResultComponent, canActivate: [authGuard] },
+            { path: 'login', component: LoginComponent, canActivate: [loggedInGuard] },
+            { path: 'logout', component: LogoutComponent },
+            { path: 'register', component: RegisterComponent },
+            { path: 'my-account', component: MyAccountComponent, canActivate: [authGuard]},
+            { path: 'my-account/settings', component: MyAccountSettingsComponent, canActivate: [authGuard]},
+            { path: 'my-profile', component: ProfileComponent }, // Define the route for the profile page
+            { path: 'my-fogot-password/:email/:code', component: FogotPasswordComponent }, // sửa dùng chữ r đi
+            { path: 'my-fogot-password', component: FogotPasswordComponent },  // sửa dùng chữ r đi
         ]
     },
-    {path: 'refresh', redirectTo: "/home"},
-    {path: '', redirectTo: "/home", pathMatch: "full"}
+    {   // admin routes
+        path: 'admindashboard', component: AdminLayoutComponent, canActivate: [authGuard],
+        children: [
+            { path: '', redirectTo: 'tests', pathMatch: 'full' },
+            { path: 'tests', component: ManageTestComponent, canActivate: [authGuard] },
+            { path: 'tests/:id/questions', component: ManageQuestionComponent, canActivate: [authGuard] }
+        ]
+    },
+    {   // refreshing
+        path: 'refresh', redirectTo: "/home" 
+    }
 ];

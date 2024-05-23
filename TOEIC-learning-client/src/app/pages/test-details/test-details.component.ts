@@ -2,13 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TestService } from '../../services/test/test.service';
-import { NavbarHomeComponent } from '../layout/navbar-home/navbar-home.component';
-import { FooterHomeComponent } from '../layout/footer-home/footer-home.component';
 
 @Component({
   selector: 'app-test-details',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavbarHomeComponent, FooterHomeComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './test-details.component.html',
   styleUrl: './test-details.component.css'
 })

@@ -1,0 +1,168 @@
+<!-- Start of Navbar -->
+<div class="topnav1 topnav-wrapper">
+    <div class="topnav-container">
+        <nav class="navbar navbar-expand-lg">
+            <span class="navbar-brand">
+                <a class="topnav-brand" href="/home">
+                    <img class="topnav-logo" src="/assets/static/img/logo_full_sm.png" alt="STUDY4">
+                </a>
+            </span>
+            <button class="navbar-toggler pull-xs-right d-lg-none" type="button" data-toggle="collapse"
+                data-target="#navbar-collapse" aria-expanded="false">
+                ☰
+            </button>
+            <div class="d-lg-block navbar-collapse justify-content-end collapse" id="navbar-collapse" style>
+                <ul class="nav">
+                    <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
+                        <a class="nav-link" routerLink="/admindashboard">Quản lý</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/tests" routerLinkActive="active"
+                            ariaCurrentWhenActive="page">Đề thi online</a>
+                    </li>
+                    <li *ngIf="!isLoggedIn" class="nav-item">
+                        <a class="btn btn-round btn-block btn-primary" routerLink="/login" routerLinkActive="active"
+                            ariaCurrentWhenActive="page">Đăng nhập</a>
+                    </li>
+
+                    <li *ngIf="isLoggedIn" class="nav-item user-topnav dropdown d-none d-lg-block">
+                        <a #dropdownToggle class="nav-link dropdown-toggle user-topnav-profile" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            (click)="toggleDropdown()">
+                            <span class="account-profile-img">
+                                <img src="/assets/static/img/user_icon.png" alt="an2572003">
+                            </span>
+                        </a>
+                        <div #dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div>
+                                <h6 class="dropdown-header" id="thông-báo"> Thông báo </h6>
+                                <div id="new-notis-dropdown-content" class="jqhtml-loader dropdown-text"
+                                    data-href="/notifications/newest/">
+                                    <p class="font-sm"> <i>Bạn chưa có thông báo mới.</i> </p>
+                                    <div class="mt-2 link font-sm">
+                                        <a href="/notifications/">Xem tất cả >></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/studyplan/">Lịch học của tôi</a>
+                            <a class="dropdown-item" href="/my-account/">Trang cá nhân</a>
+                            <a class="dropdown-item" routerLink="/my-profile/">Trang cá nhân mới</a>
+                            <a class="dropdown-item" href="/logout">Đăng xuất</a>
+                        </div>
+                    </li>
+                    <!-- Responsive -->
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="/notifications/">Thông báo </a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="/studyplan/">Lịch học của tôi</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="/my-account/">Trang cá nhân</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="/logout">Đăng xuất</a>
+                    </li>
+                    <!-- End of responsive -->
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- End of Navbar -->
+
+<router-outlet></router-outlet>
+
+<!-- Start of Footer-->
+<div class="footer-wrapper">
+    <div class="footer-container">
+        <footer>
+            <div class="row">
+                <div class="col-sm-12 col-md grow0">
+                    <a href="/"><img class="mb-2" src="/assets/static/img/logo_full_sm.png" alt="" height="30"></a>
+                    <small class="d-block mb-2">© 2021</small>
+                    <div class="site-socials">
+                        <a target="_blank" href="https://facebook.com/study4.official"><span
+                                class="social-link fab fa-facebook-square"></span></a>
+                        <a target="_blank" href="https://instagram.com/study4.official"><span
+                                class="social-link fab fa-instagram"></span></a>
+                        <a target="_blank" href="https://twitter.com/study4Official"><span
+                                class="social-link fab fa-twitter"></span></a>
+                        <a target="_blank" href="https://www.linkedin.com/company/study4"><span
+                                class="social-link fab fa-linkedin"></span></a>
+                        <a target="_blank" href="https://www.tiktok.com/@study4.official"><span
+                                class="social-link fab fa-tiktok"></span></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md">
+                    <div class="footer-title">Khoá học online</div>
+                    <ul class="list-unstyled text-small">
+
+                        <li><a href="/courses/29/ielts-general-intensive-reading/">IELTS General Reading</a></li>
+
+                        <li><a href="/courses/30/ielts-general-intensive-writing/">IELTS General Writing</a></li>
+
+                        <li><a href="/courses/28/complete-toeic/">Complete TOEIC</a></li>
+
+                        <li><a href="/courses/26/ielts-fundamentals/">IELTS Fundamentals</a></li>
+
+                        <li><a href="/courses/15/ielts-intensive-listening/">IELTS Intensive Listening</a></li>
+
+                        <li><a href="/courses/22/ielts-intensive-vocabulary-reading/">IELTS Intensive Reading</a></li>
+
+                        <li><a href="/courses/27/ielts-intensive-speaking/">IELTS Intensive Speaking</a></li>
+
+                        <li><a href="/courses/25/ielts-intensive-writing/">IELTS Intensive Writing</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <div class="footer-title">Tài nguyên</div>
+                    <ul class="list-unstyled text-small">
+
+                        <li><a href="/tests/">Thư viện đề thi</a></li>
+                        <li><a href="/posts/">Blog</a></li>
+                        <li><a href="/materials/">Kho tài liệu</a></li>
+                        <li><a href="/groups/">Nhóm học tập</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <div class="footer-title">Hỗ trợ</div>
+                    <ul class="list-unstyled text-small">
+                        <li><a href="/user-guide/">Hướng dẫn sử dụng</a></li>
+                        <li><a href="/buying-guide/">Hướng dẫn mua hàng</a></li>
+                        <li><a href="/customer-support/">Chăm sóc khách hàng</a></li>
+                        <li><a href="/feedback/">Phản hồi khiếu nại</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <div class="footer-title">STUDY5</div>
+                    <ul class="list-unstyled text-small">
+                        <li><a href="/about/">Về chúng tôi</a></li>
+                        <li><a href="/contact/">Liên hệ</a></li>
+                        <li><a href="/privacy/">Điều khoản bảo mật</a></li>
+                        <li><a href="/terms/">Điều khoản sử dụng</a></li>
+                        <li><a href="/buying-terms/">Điều khoản và Điều Kiện Giao Dịch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-addresses">
+                <h5 id="thông-tin-doanh-nghiệp">Thông tin doanh nghiệp</h5>
+                <ul>
+                    <li>Công ty TNHH Một thành viên</li>
+                    <li>Giấy chứng nhận Đăng ký doanh nghiệp số: 0123456789 do Sở Kế hoạch và Đầu tư thành phố Hồ Chí
+                        Minh cấp ngày 14/04/2024.</li>
+                    <li>Điện thoại liên hệ/Hotline: 000 000 0000</li>
+                    <li>Email: study4.team&#64;gmail.com.</li>
+                    <li>Địa chỉ trụ sở: Số 1 Võ Văn Ngân, Phường Linh Chiểu, Quận Thủ Đức, Thành phố HCM, Việt Nam</li>
+                </ul>
+            </div>
+            <div class="footer-copyright text-center">
+                &#64; 2021 - Bản quyền của Công ty TNHH Công Nghệ A Plus.
+            </div>
+        </footer>
+    </div>
+</div>
+<!--End of Footer-->

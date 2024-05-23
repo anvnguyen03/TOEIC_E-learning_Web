@@ -24,7 +24,6 @@ export class ManageQuestionComponent implements OnInit{
   dtOptions: Config = {}
   test!: any
   questions: any[] = []
-
   constructor(private route: ActivatedRoute,
     private router: Router,
     private questionService: QuestionService,

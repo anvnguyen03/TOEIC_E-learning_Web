@@ -4,15 +4,13 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TestService } from '../../services/test/test.service';
 import { QuestionService } from '../../services/test/question.service';
 import { ResourceService } from '../../services/test/resource.service';
-import { NavbarHomeComponent } from '../layout/navbar-home/navbar-home.component';
-import { FooterHomeComponent } from '../layout/footer-home/footer-home.component';
 import { CountdownComponent, CountdownModule, CountdownStatus } from 'ngx-countdown';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dotest',
   standalone: true,
-  imports: [NavbarHomeComponent, FooterHomeComponent, CommonModule, RouterLink, CountdownModule,
+  imports: [CommonModule, RouterLink, CountdownModule,
     ReactiveFormsModule
   ],
   templateUrl: './dotest.component.html',

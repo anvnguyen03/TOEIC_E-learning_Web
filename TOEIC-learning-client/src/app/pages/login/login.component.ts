@@ -3,15 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { NavbarHomeComponent } from '../layout/navbar-home/navbar-home.component';
-import { FooterHomeComponent } from '../layout/footer-home/footer-home.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, ReactiveFormsModule, CommonModule,
-    NavbarHomeComponent, FooterHomeComponent
-  ],
+  imports: [RouterLink, RouterLinkActive, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -39,6 +35,7 @@ export class LoginComponent {
           this.message = response.error
         } else {
           this.authService.setToken(response.token)
+          this.authService.setFullname(response.fullname)
           const role = this.authService.getUserRole()
           if (role == 'ADMIN') {
             this.router.navigate(['/admindashboard'])

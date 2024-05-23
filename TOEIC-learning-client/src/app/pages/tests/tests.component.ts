@@ -3,13 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink, UrlSegment } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TestService } from '../../services/test/test.service';
-import { NavbarHomeComponent } from '../layout/navbar-home/navbar-home.component';
-import { FooterHomeComponent } from '../layout/footer-home/footer-home.component';
 
 @Component({
   selector: 'app-tests',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavbarHomeComponent, FooterHomeComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './tests.component.html',
   styleUrl: './tests.component.css'
 })
@@ -26,11 +24,13 @@ export class TestsComponent implements OnInit{
     private authService:AuthService) {}
 
   ngOnInit(): void {
+
+    console.log('new')
+
     let title:string = '';
     let page:number = 1;
 
     const current_url:UrlSegment[] = this.activatedRoute.snapshot.url;
-    console.log(current_url);
 
     this.activatedRoute.queryParams.subscribe(params => {
       title = params['title'] || '';
@@ -41,6 +41,8 @@ export class TestsComponent implements OnInit{
     } else if(current_url.length==2) {
       this.getAllTestByCategory(current_url[1].path, title, page-1);
     }
+
+    this.isLoggedIn = this.authService.isLoggedIn()
   }
 
   getUsername():string {
@@ -54,7 +56,6 @@ export class TestsComponent implements OnInit{
   getAllTest(title:string, page:number, size:number=5) {
     this.testService.getAll(title, page, 5).subscribe({
       next: (response) => {
-        console.log(response);
         this.total_page = response[0].totalPages;
         this.listTest = response;
         this.current_page = page;
@@ -71,7 +72,6 @@ export class TestsComponent implements OnInit{
   getAllTestByCategory(cate_name:string, title:string, page:number) {
     this.testService.getAllByCategory(cate_name, title, page, 5).subscribe({
       next: (response) => {
-        console.log(response);
         this.total_page = response[0].totalPages;
         this.listTest = response;
         this.current_page = page;

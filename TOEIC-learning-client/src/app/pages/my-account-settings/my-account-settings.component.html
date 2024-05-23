@@ -1,0 +1,77 @@
+<div class="site-content-wrapper">
+    <div class="content-wrapper">
+        <div class="sm-container">
+            <div class="contentblock">
+                <div class="settings-wrapper">
+                    <h1 class="mb-3" id="cập-nhật-thông-tin-cá-nhân">Cập nhật thông tin cá nhân</h1>
+
+                    <ul class="nav nav-tabs mb-4" id="pills-tab" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#basics">Thông tin cơ
+                                bản</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#change-password">Thay mật
+                                khẩu</a></li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+
+                        <div class="tab-pane fade active show" id="basics" role="tabpanel"
+                            aria-labelledby="pills-basics-tab">
+                            <form id="settings-form" [formGroup]="userInfoForm"
+                                enctype="multipart/form-data">
+
+                                <input name="csrfmiddlewaretoken" type="hidden"
+                                    value="kyDIBDqEThfB1iteXOCJuQCgS8BaLhUT2ae0HcArg1wW4G7eT6ipupEK1qZLgc2B">
+                                <p>
+                                    Email: {{username}} <i>(STUDY5 không hỗ trợ đổi email. Vui lòng liên hệ chúng
+                                        tôi nếu bạn đã mua khóa học và muốn đổi account.)</i>
+                                </p>
+
+                                <div class="form-group ">
+                                    <label class="label" for="name">Họ và Tên</label>
+                                    <input required="" maxlength="50" class="form-control " id="field-name" formControlName="fullname"
+                                        type="text" placeholder="Họ và tên bạn" value="an2572003" step="None">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="label" for="about">Về bản thân</label>
+                                    <textarea class="form-control " id="field-about" name="about" rows="5"
+                                        placeholder="Chia sẻ những điều thú vị về bạn"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Lưu" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="change-password" role="tabpanel"
+                            aria-labelledby="pills-change-password-tab">
+                            <form [formGroup]="userPasswordForm">
+
+                                <div class="form-group ">
+                                    <label class="label" for="name">Mật khẩu</label>
+                                    <input required="" maxlength="50" class="form-control " id="field-name" formControlName="fullname"
+                                        type="text" placeholder="Mật khẩu" step="None">
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="label" for="name">Xác nhận mật khẩu</label>
+                                    <input required="" maxlength="50" class="form-control " id="field-name" formControlName="fullname"
+                                        type="text" placeholder="Xác nhận mật khẩu" step="None">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Lưu" class="btn btn-primary">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
